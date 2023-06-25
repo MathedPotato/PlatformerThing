@@ -1,4 +1,4 @@
-extends Node
+extends Area
 
 class_name DriveableObj
 

@@ -73,6 +73,7 @@ func _input(event: InputEvent) -> void:
 			if currentState.has_method("enter"): currentState.enter(self)
 
 func AreaEnter(other):
+	print(other)
 	#if other is WaterObj:
 		#areasJustEntered += other
 	if other is GreatCylinder:

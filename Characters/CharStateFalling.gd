@@ -5,6 +5,8 @@ var moveFactor := 0.3
 
 var enteredWaterObj := false
 var waterObj : WaterObj
+var enteredDriveableObj := false
+var driveableObj : DriveableObj
 
 func enter(player: Char):
 	pass
@@ -18,6 +20,8 @@ func processInput(player: Char, input: InputComponent) -> CharState:
 	if enteredWaterObj:
 		if (waterObj as WaterObj).SurfacePoint(player.global_transform.origin.x, player.global_transform.origin.z).y > player.global_transform.origin.y + player.waterEnterYOffset:
 			return load("res://Characters/CharStateSwimming.gd").new(waterObj)
+	if enteredDriveableObj:
+		return load("res://Characters/CharStateDriving.gd").new(driveableObj)
 	if player.is_on_floor():
 		return load("res://Characters/CharStateSoftLand.gd").new()
 	if input.is_action_just_pressed("Ground Pound") and !player.is_on_floor():
@@ -81,6 +85,9 @@ func areaEnter(other : Area):
 	if other is WaterObj:
 		enteredWaterObj = true
 		waterObj = other
+	if other is DriveableObj:
+		enteredDriveableObj = true
+		driveableObj = other
 
 func areaExit(other : Area):
 	if other is WaterObj:

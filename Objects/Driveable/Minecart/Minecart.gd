@@ -17,6 +17,7 @@ export var selfDriving : bool
 
 func StartDriving(newDriver):
 	driver = newDriver
+	camTrackFollow.get_child(0).current = true
 
 func processInput(input : InputComponent):
 	inputSpeed = 0
@@ -24,6 +25,10 @@ func processInput(input : InputComponent):
 		inputSpeed += 1
 	if input.is_action_pressed("Back"):
 		inputSpeed -= 1
+	if input.is_action_pressed("Crouch"):
+		driver = null
+		camTrackFollow.get_child(0).current = false
+		return ExitVehicleInfo.new(Vector3(0,0,-5))
 
 func _physics_process(delta: float) -> void:
 	if !selfDriving and !driver: return
@@ -58,3 +63,13 @@ func _process(delta: float) -> void:
 
 func processAsyncInput(input: InputEvent):
 	pass
+
+
+func _on_Area_body_entered(body: Node) -> void:
+	if body.has_method("AreaEnter"):
+		body.AreaEnter(self)
+
+
+func _on_Area_body_exited(body: Node) -> void:
+	if body.has_method("AreaExit"):
+		body.AreaExit(self)

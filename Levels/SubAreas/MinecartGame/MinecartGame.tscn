@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Levels/SubAreas/MinecartGame/MinecartGame.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Driveable/Minecart/Minecart.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/MinecartTrack.gd" type="Script" id=3]
 [ext_resource path="res://Objects/MinecartTrack.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/MinecartTrackModifier.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/Teleport/TeleDest1.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve3D" id=1]
 _data = {
@@ -20,6 +21,9 @@ _data = {
 script = ExtResource( 1 )
 minecart = NodePath("Track/Path/PathFollow/Minecart")
 altitudeSpeedFactor = 0.1
+
+[node name="TeleDest1" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.80679, 0 )
 
 [node name="Track" type="Spatial" parent="."]
 
@@ -41,7 +45,6 @@ camTrackFollow = NodePath("../../PathFollow2")
 camBaseDist = 7.5
 camMaxDist = 12.0
 speedCamModifier = 0.4
-selfDriving = true
 
 [node name="PathFollow2" type="PathFollow" parent="Track/Path"]
 transform = Transform( -0.999918, 1.01717e-05, -0.0127759, 0, 1, 0.000796159, 0.0127759, 0.000796095, -0.999918, 0.0739063, -0.000337601, 0.424966 )
@@ -53,18 +56,20 @@ loop = false
 transform = Transform( 0.999918, 1.01717e-05, 0.0127759, 8.43767e-14, 1, -0.000796159, -0.0127759, 0.000796094, 0.999918, 0, 3.64, 0 )
 
 [node name="TrackPathFollow" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.01717e-05, -0.0127759, 0, 1, 0.000796159, 0.0127759, 0.000796095, -0.999918, 0.0739063, -0.000337601, 0.424966 )
+transform = Transform( -0.999918, 1.01717e-05, -0.0127759, 0, 1, 0.000796159, 0.0127759, 0.000796094, -0.999918, 0.0739063, -0.000337601, 0.424966 )
 rotation_mode = 4
 
+[node name="MinecartTrack" parent="Track/Path/TrackPathFollow" instance=ExtResource( 4 )]
+
 [node name="TrackPathFollow2" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.01717e-05, -0.0127759, -4.82032e-11, 1, 0.00079616, 0.012776, 0.000796096, -0.999917, 0.0585862, 0.000617107, -0.774078 )
+transform = Transform( -0.999918, 1.01717e-05, -0.012776, -4.82032e-11, 1, 0.00079616, 0.012776, 0.000796096, -0.999918, 0.0585862, 0.000617107, -0.774078 )
 offset = 1.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow2" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow3" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.01716e-05, -0.0127759, -3.18323e-11, 1, 0.000796158, 0.0127759, 0.000796094, -0.999917, 0.0432719, 0.00157145, -1.97266 )
+transform = Transform( -0.999918, 1.01716e-05, -0.0127759, -3.18323e-11, 1, 0.000796159, 0.0127759, 0.000796094, -0.999918, 0.0432719, 0.00157145, -1.97266 )
 offset = 2.4
 rotation_mode = 4
 
@@ -78,7 +83,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow4" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow5" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.01717e-05, -0.0127759, -3.72893e-11, 1, 0.000796161, 0.0127759, 0.000796097, -0.999917, 0.0126558, 0.00347936, -4.36885 )
+transform = Transform( -0.999918, 1.01717e-05, -0.0127759, -3.72893e-11, 1, 0.000796162, 0.0127759, 0.000796097, -0.999918, 0.0126558, 0.00347936, -4.36885 )
 offset = 4.8
 rotation_mode = 4
 
@@ -92,14 +97,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow6" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow7" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.01765e-05, -0.0127759, 4.85943e-09, 1, 0.000796154, 0.0127759, 0.000796091, -0.999916, -0.0179652, 0.00538757, -6.76543 )
+transform = Transform( -0.999918, 1.01765e-05, -0.0127759, 4.85943e-09, 1, 0.000796156, 0.0127759, 0.000796091, -0.999918, -0.0179652, 0.00538757, -6.76543 )
 offset = 7.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow7" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow8" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.01788e-05, -0.0127759, 7.16409e-09, 1, 0.000796161, 0.0127759, 0.000796097, -0.999917, -0.0331707, 0.00633514, -7.95551 )
+transform = Transform( -0.999918, 1.01788e-05, -0.0127759, 7.16409e-09, 1, 0.000796161, 0.0127759, 0.000796097, -0.999918, -0.0331707, 0.00633514, -7.95551 )
 offset = 8.4
 rotation_mode = 4
 
@@ -113,28 +118,28 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow9" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow10" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.01717e-05, -0.012776, -6.73026e-11, 1, 0.00079616, 0.012776, 0.000796096, -0.999917, -0.0637486, 0.00824067, -10.3487 )
+transform = Transform( -0.999918, 1.01717e-05, -0.012776, -6.73026e-11, 1, 0.000796161, 0.012776, 0.000796096, -0.999918, -0.0637486, 0.00824067, -10.3487 )
 offset = 10.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow10" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow11" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.018e-05, -0.0127758, 8.11542e-09, 1, 0.000796179, 0.0127759, 0.000796114, -0.999918, -0.0791362, 0.00919957, -11.553 )
+transform = Transform( -0.999918, 1.018e-05, -0.0127759, 8.11542e-09, 1, 0.000796179, 0.0127759, 0.000796114, -0.999918, -0.0791362, 0.00919957, -11.553 )
 offset = 12.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow11" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow12" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.01799e-05, -0.012776, 7.83256e-09, 1, 0.000796179, 0.0127761, 0.000796115, -0.999917, -0.0945086, 0.0101575, -12.7562 )
+transform = Transform( -0.999918, 1.01799e-05, -0.0127761, 7.83257e-09, 1, 0.00079618, 0.0127761, 0.000796115, -0.999918, -0.0945086, 0.0101575, -12.7562 )
 offset = 13.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow12" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow13" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.01795e-05, -0.0127758, 7.89623e-09, 1, 0.000796161, 0.0127758, 0.000796097, -0.999918, -0.109858, 0.0111141, -13.9575 )
+transform = Transform( -0.999918, 1.01795e-05, -0.0127758, 7.89623e-09, 1, 0.000796161, 0.0127758, 0.000796096, -0.999918, -0.109858, 0.0111141, -13.9575 )
 offset = 14.4
 rotation_mode = 4
 
@@ -155,14 +160,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow15" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow16" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999801, 2.28545e-05, -0.0199702, -4.34563e-06, 0.999998, 0.001362, 0.0199702, 0.00136181, -0.9998, -0.171554, 0.0151846, -17.5552 )
+transform = Transform( -0.999801, 2.28546e-05, -0.0199701, -4.34563e-06, 0.999999, 0.001362, 0.0199702, 0.00136181, -0.9998, -0.171554, 0.0151846, -17.5552 )
 offset = 18.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow16" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow17" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999831, 2.08086e-05, -0.0183956, -2.27113e-06, 0.999999, 0.00125461, 0.0183956, 0.00125444, -0.99983, -0.194727, 0.016765, -18.7557 )
+transform = Transform( -0.999831, 2.08086e-05, -0.0183956, -2.27112e-06, 0.999999, 0.00125461, 0.0183956, 0.00125444, -0.99983, -0.194727, 0.016765, -18.7557 )
 offset = 19.2
 rotation_mode = 4
 
@@ -183,14 +188,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow19" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow20" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999899, 1.61634e-05, -0.0141846, 2.44154e-06, 1, 0.000967395, 0.0141846, 0.000967263, -0.999899, -0.253582, 0.020779, -22.3477 )
+transform = Transform( -0.999899, 1.61634e-05, -0.0141846, 2.44155e-06, 1, 0.000967395, 0.0141846, 0.000967263, -0.999899, -0.253582, 0.020779, -22.3477 )
 offset = 22.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow20" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow21" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999918, 1.48954e-05, -0.0127944, 3.73166e-06, 1, 0.00087257, 0.0127944, 0.000872451, -0.999918, -0.269953, 0.0218955, -23.5508 )
+transform = Transform( -0.999918, 1.48953e-05, -0.0127944, 3.73166e-06, 1, 0.00087257, 0.0127944, 0.000872451, -0.999918, -0.269953, 0.0218955, -23.5508 )
 offset = 24.0
 rotation_mode = 4
 
@@ -204,14 +209,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow22" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow23" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999951, 1.26972e-05, -0.00992696, 5.97688e-06, 1, 0.000677, 0.00992699, 0.000676909, -0.999949, -0.297586, 0.0237802, -25.9549 )
+transform = Transform( -0.999951, 1.26972e-05, -0.00992698, 5.97687e-06, 1, 0.000677001, 0.00992698, 0.000676909, -0.99995, -0.297586, 0.0237802, -25.9549 )
 offset = 26.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow23" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow24" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999965, 1.17701e-05, -0.0084243, 6.93012e-06, 1, 0.000574558, 0.00842432, 0.000574479, -0.999964, -0.308788, 0.0245442, -27.1586 )
+transform = Transform( -0.999965, 1.17701e-05, -0.00842431, 6.93011e-06, 1, 0.000574558, 0.00842431, 0.000574479, -0.999964, -0.308788, 0.0245442, -27.1586 )
 offset = 27.6
 rotation_mode = 4
 
@@ -225,7 +230,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow25" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow26" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999986, 1.03078e-05, -0.00521738, 8.45123e-06, 1, 0.000355867, 0.00521739, 0.000355819, -0.999985, -0.325559, 0.025688, -29.5614 )
+transform = Transform( -0.999986, 1.03078e-05, -0.00521739, 8.45123e-06, 1, 0.000355868, 0.00521739, 0.000355819, -0.999986, -0.325559, 0.025688, -29.5614 )
 offset = 30.0
 rotation_mode = 4
 
@@ -239,7 +244,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow27" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow28" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.999999, 9.509e-06, -0.00165514, 9.32218e-06, 1, 0.000112884, 0.00165514, 0.000112868, -0.999998, -0.334265, 0.0262817, -31.9663 )
+transform = Transform( -0.999999, 9.509e-06, -0.00165514, 9.32217e-06, 1, 0.000112884, 0.00165514, 0.000112868, -0.999998, -0.334265, 0.0262817, -31.9663 )
 offset = 32.4
 rotation_mode = 4
 
@@ -253,7 +258,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow29" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow30" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.9979, 5.67213e-06, 0.0647684, 1.23595e-05, 1, 0.00010285, -0.0647684, 0.000103434, -0.9979, -0.298176, 0.0264113, -34.3725 )
+transform = Transform( -0.9979, 5.67213e-06, 0.0647685, 1.23595e-05, 1, 0.00010285, -0.0647685, 0.000103434, -0.9979, -0.298176, 0.0264113, -34.3725 )
 offset = 34.8
 rotation_mode = 4
 
@@ -267,14 +272,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow31" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow32" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.977025, -2.68206e-05, 0.213123, 4.3266e-05, 1, 0.000324191, -0.213123, 0.000325964, -0.977024, 0.00985308, 0.0268898, -36.7488 )
+transform = Transform( -0.977025, -2.68206e-05, 0.213123, 4.3266e-05, 1, 0.000324191, -0.213123, 0.000325964, -0.977025, 0.00985308, 0.0268898, -36.7488 )
 offset = 37.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow32" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow33" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.950964, -6.41691e-05, 0.3093, 8.11451e-05, 1, 0.000456951, -0.3093, 0.000459643, -0.950964, 0.313237, 0.0273455, -37.9139 )
+transform = Transform( -0.950964, -6.41691e-05, 0.3093, 8.11451e-05, 1, 0.000456952, -0.3093, 0.000459643, -0.950964, 0.313237, 0.0273455, -37.9139 )
 offset = 38.4
 rotation_mode = 4
 
@@ -288,21 +293,21 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow34" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow35" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.838579, -0.000205146, 0.544781, 0.000236482, 1, 0.000740581, -0.544781, 0.000749867, -0.838578, 1.30118, 0.0287504, -40.0852 )
+transform = Transform( -0.838579, -0.000205146, 0.544781, 0.000236482, 1, 0.000740582, -0.544781, 0.000749867, -0.838578, 1.30118, 0.0287504, -40.0852 )
 offset = 40.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow35" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow36" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.739619, -0.000309101, 0.673026, 0.00036463, 1, 0.000859979, -0.673026, 0.000881462, -0.739619, 2.01894, 0.0297017, -41.0446 )
+transform = Transform( -0.739619, -0.000309101, 0.673026, 0.00036463, 1, 0.000859979, -0.673026, 0.000881462, -0.739618, 2.01894, 0.0297017, -41.0446 )
 offset = 42.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow36" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow37" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.612162, -0.000416858, 0.790732, 0.00051885, 0.999999, 0.000928859, -0.790732, 0.000978883, -0.612162, 2.88954, 0.0307773, -41.8729 )
+transform = Transform( -0.612162, -0.000416858, 0.790732, 0.00051885, 0.999999, 0.000928858, -0.790732, 0.000978884, -0.612161, 2.88954, 0.0307773, -41.8729 )
 offset = 43.2
 rotation_mode = 4
 
@@ -316,7 +321,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow38" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow39" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.324409, -0.000519042, 0.945917, 0.000816293, 0.999998, 0.000828672, -0.945917, 0.00104097, -0.324408, 4.98325, 0.032967, -43.0267 )
+transform = Transform( -0.324409, -0.000519042, 0.945917, 0.000816293, 0.999999, 0.000828672, -0.945917, 0.00104097, -0.324408, 4.98325, 0.032967, -43.0267 )
 offset = 45.6
 rotation_mode = 4
 
@@ -330,35 +335,35 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow40" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow41" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0762856, -0.000263467, 0.997085, 0.00097955, 0.999999, 0.00033918, -0.997086, 0.00100257, -0.0762852, 7.32497, 0.0345082, -43.5192 )
+transform = Transform( -0.0762856, -0.000263467, 0.997086, 0.000979549, 0.999999, 0.00033918, -0.997086, 0.00100257, -0.0762853, 7.32497, 0.0345082, -43.5192 )
 offset = 48.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow41" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow42" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0377235, 2.79049e-05, 0.999288, 0.000995096, 1, -6.54899e-05, -0.999288, 0.000996858, 0.0377234, 8.5247, 0.0347015, -43.5584 )
+transform = Transform( 0.0377235, 2.79049e-05, 0.999288, 0.000995095, 1, -6.54899e-05, -0.999288, 0.000996858, 0.0377234, 8.5247, 0.0347015, -43.5584 )
 offset = 49.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow42" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow43" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.159644, 9.83116e-05, 0.987174, 0.000975681, 1, -0.000257374, -0.987174, 0.00100426, 0.159643, 9.71979, 0.0345177, -43.4484 )
+transform = Transform( 0.159644, 9.83115e-05, 0.987174, 0.000975681, 1, -0.000257374, -0.987174, 0.00100426, 0.159644, 9.71979, 0.0345177, -43.4484 )
 offset = 50.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow43" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow44" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.254876, 0.000124774, 0.966973, 0.000947988, 1, -0.000378908, -0.966973, 0.00101326, 0.254876, 10.8945, 0.0341432, -43.2076 )
+transform = Transform( 0.254876, 0.000124774, 0.966973, 0.000947988, 1, -0.000378908, -0.966973, 0.00101325, 0.254876, 10.8945, 0.0341432, -43.2076 )
 offset = 51.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow44" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow45" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.339486, 0.00012406, 0.940611, 0.000908524, 1, -0.000459797, -0.940611, 0.00101066, 0.339485, 12.0414, 0.0336453, -42.8592 )
+transform = Transform( 0.339486, 0.000124059, 0.940611, 0.000908524, 1, -0.000459797, -0.940611, 0.00101066, 0.339485, 12.0414, 0.0336453, -42.8592 )
 offset = 52.8
 rotation_mode = 4
 
@@ -372,28 +377,28 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow46" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow47" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.513677, 4.73706e-05, 0.857983, 0.00080818, 1, -0.000539071, -0.857983, 0.000970314, 0.513677, 14.2208, 0.0324331, -41.8572 )
+transform = Transform( 0.513677, 4.73705e-05, 0.857983, 0.00080818, 1, -0.000539071, -0.857983, 0.000970313, 0.513677, 14.2208, 0.0324331, -41.8572 )
 offset = 55.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow47" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow48" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.620355, -3.72613e-05, 0.784321, 0.000736969, 1, -0.000535393, -0.784321, 0.000910154, 0.620354, 15.2194, 0.0317828, -41.1878 )
+transform = Transform( 0.620355, -3.72613e-05, 0.784321, 0.000736968, 1, -0.000535393, -0.784321, 0.000910154, 0.620354, 15.2194, 0.0317828, -41.1878 )
 offset = 56.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow48" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow49" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.752407, -0.000164951, 0.658699, 0.0006407, 1, -0.00048143, -0.658698, 0.000784259, 0.752408, 16.1047, 0.0311609, -40.3805 )
+transform = Transform( 0.752407, -0.000164951, 0.658699, 0.0006407, 1, -0.000481429, -0.658698, 0.000784259, 0.752407, 16.1047, 0.0311609, -40.3805 )
 offset = 57.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow49" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow50" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.90686, -0.00033092, 0.421431, 0.000516676, 1, -0.000326585, -0.421431, 0.000513911, 0.90686, 16.7921, 0.0306467, -39.4 )
+transform = Transform( 0.90686, -0.00033092, 0.421431, 0.000516676, 1, -0.000326585, -0.421431, 0.00051391, 0.90686, 16.7921, 0.0306467, -39.4 )
 offset = 58.8
 rotation_mode = 4
 
@@ -407,7 +412,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow51" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow52" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.998915, -0.000439437, -0.0465631, 0.000414154, 1, -0.000552623, 0.0465633, 0.00053274, 0.998915, 17.0834, 0.0300695, -37.0525 )
+transform = Transform( 0.998915, -0.000439436, -0.0465631, 0.000414154, 1, -0.000552623, 0.0465633, 0.000532739, 0.998915, 17.0834, 0.0300695, -37.0525 )
 offset = 61.2
 rotation_mode = 4
 
@@ -421,42 +426,42 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow53" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow54" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.997385, -0.000461016, -0.0722703, 0.000396001, 0.999998, -0.00091395, 0.0722706, 0.000882939, 0.997385, 16.9348, 0.0282526, -34.6546 )
+transform = Transform( 0.997385, -0.000461016, -0.0722702, 0.000396001, 0.999999, -0.00091395, 0.0722706, 0.000882941, 0.997385, 16.9348, 0.0282526, -34.6546 )
 offset = 63.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow54" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow55" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.997225, -0.000465979, -0.0744397, 0.000393968, 0.999998, -0.000982055, 0.0744401, 0.000950002, 0.997225, 16.8465, 0.0271163, -33.4564 )
+transform = Transform( 0.997225, -0.000465979, -0.0744398, 0.000393968, 0.999999, -0.000982055, 0.0744402, 0.000950004, 0.997225, 16.8465, 0.0271163, -33.4564 )
 offset = 64.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow55" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow56" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.997346, -0.000472753, -0.0728116, 0.000399946, 0.999999, -0.00101451, 0.0728121, 0.0009827, 0.997345, 16.7577, 0.025921, -32.2619 )
+transform = Transform( 0.997346, -0.000472753, -0.0728116, 0.000399946, 0.999999, -0.00101451, 0.0728121, 0.000982701, 0.997345, 16.7577, 0.025921, -32.2619 )
 offset = 66.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow56" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow57" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.997694, -0.000468951, -0.06787, 0.000400713, 0.999999, -0.00101904, 0.0678704, 0.000989496, 0.997694, 16.6721, 0.0246929, -31.0592 )
+transform = Transform( 0.997694, -0.000468952, -0.0678699, 0.000400713, 0.999999, -0.00101904, 0.0678704, 0.000989497, 0.997694, 16.6721, 0.0246929, -31.0592 )
 offset = 67.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow57" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow58" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.998244, -0.000467729, -0.0592377, 0.0004094, 0.999999, -0.000996799, 0.0592382, 0.000970797, 0.998243, 16.5944, 0.0234762, -29.8595 )
+transform = Transform( 0.998244, -0.000467729, -0.0592378, 0.0004094, 0.999999, -0.0009968, 0.0592382, 0.000970797, 0.998243, 16.5944, 0.0234762, -29.8595 )
 offset = 68.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow58" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow59" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.998949, -0.000474706, -0.0458331, 0.000431922, 0.999999, -0.000943383, 0.0458335, 0.000922595, 0.998949, 16.5293, 0.0223, -28.6579 )
+transform = Transform( 0.998949, -0.000474706, -0.045833, 0.000431922, 0.999999, -0.000943383, 0.0458335, 0.000922595, 0.998949, 16.5293, 0.0223, -28.6579 )
 offset = 69.6
 rotation_mode = 4
 
@@ -470,28 +475,28 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow60" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow61" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.999963, -0.000461456, 0.00853821, 0.00046719, 1, -0.00066956, -0.00853791, 0.000673526, 0.999962, 16.4686, 0.0202732, -26.2573 )
+transform = Transform( 0.999963, -0.000461456, 0.00853822, 0.00046719, 1, -0.000669561, -0.00853791, 0.000673526, 0.999963, 16.4686, 0.0202732, -26.2573 )
 offset = 72.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow61" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow62" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.997336, -0.000476595, 0.072947, 0.000500806, 1, -0.000313617, -0.0729469, 0.000349314, 0.997336, 16.5063, 0.0196203, -25.0587 )
+transform = Transform( 0.997336, -0.000476595, 0.072947, 0.000500806, 1, -0.000313617, -0.0729468, 0.000349314, 0.997336, 16.5063, 0.0196203, -25.0587 )
 offset = 73.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow62" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow63" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.993466, -0.000465775, 0.114131, 0.000510329, 1, -0.000361151, -0.11413, 0.000417035, 0.993466, 16.6333, 0.0193898, -23.8645 )
+transform = Transform( 0.993466, -0.000465775, 0.114131, 0.000510328, 1, -0.000361151, -0.11413, 0.000417035, 0.993466, 16.6333, 0.0193898, -23.8645 )
 offset = 74.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow63" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow64" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.993348, -0.000437769, 0.115151, 0.000511162, 1, -0.000607838, -0.11515, 0.000662656, 0.993347, 16.7692, 0.0188103, -22.6731 )
+transform = Transform( 0.993348, -0.000437769, 0.115151, 0.000511162, 1, -0.000607838, -0.11515, 0.000662656, 0.993348, 16.7692, 0.0188103, -22.6731 )
 offset = 75.6
 rotation_mode = 4
 
@@ -512,7 +517,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow66" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow67" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.987821, -0.00041422, 0.155596, 0.000549761, 1, -0.000828075, -0.155596, 0.000903532, 0.987819, 17.244, 0.0161477, -19.0983 )
+transform = Transform( 0.987821, -0.00041422, 0.155596, 0.000549761, 1, -0.000828076, -0.155596, 0.000903532, 0.98782, 17.244, 0.0161477, -19.0983 )
 offset = 79.2
 rotation_mode = 4
 
@@ -533,7 +538,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow69" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow70" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.974111, -0.000388107, 0.226072, 0.000603839, 0.999999, -0.000885108, -0.226072, 0.000998704, 0.97411, 17.9141, 0.0130428, -15.5588 )
+transform = Transform( 0.974111, -0.000388108, 0.226072, 0.000603839, 0.999999, -0.000885108, -0.226072, 0.000998705, 0.97411, 17.9141, 0.0130428, -15.5588 )
 offset = 82.8
 rotation_mode = 4
 
@@ -568,14 +573,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow74" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow75" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.864474, -0.000352656, 0.502677, 0.000856478, 0.999999, -0.000771365, -0.502676, 0.00109736, 0.864474, 19.9047, 0.00787093, -9.92074 )
+transform = Transform( 0.864474, -0.000352657, 0.502677, 0.000856478, 0.999999, -0.000771365, -0.502676, 0.00109736, 0.864474, 19.9047, 0.00787093, -9.92074 )
 offset = 88.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow75" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow76" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.782728, -0.000343074, 0.622364, 0.000963963, 0.999999, -0.000661105, -0.622363, 0.0011174, 0.782728, 20.5652, 0.00699257, -8.91778 )
+transform = Transform( 0.782728, -0.000343074, 0.622364, 0.000963964, 0.999999, -0.000661104, -0.622363, 0.0011174, 0.782728, 20.5652, 0.00699257, -8.91778 )
 offset = 90.0
 rotation_mode = 4
 
@@ -610,28 +615,28 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow80" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow81" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0698827, -0.0390017, 0.996791, -0.00232757, 0.999226, 0.0392601, -0.997553, -0.0050637, 0.0697377, 25.9493, 0.0916817, -6.87784 )
+transform = Transform( 0.0698827, -0.0390017, 0.996792, -0.00232757, 0.999226, 0.0392601, -0.997553, -0.0050637, 0.0697378, 25.9493, 0.0916817, -6.87784 )
 offset = 96.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow81" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow82" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0488884, -0.0417689, 0.997929, -0.00317925, 0.999114, 0.0419741, -0.998799, -0.00522472, 0.0487122, 27.1431, 0.140223, -6.8056 )
+transform = Transform( 0.0488884, -0.0417689, 0.99793, -0.00317925, 0.999114, 0.0419741, -0.998799, -0.00522472, 0.0487123, 27.1431, 0.140223, -6.8056 )
 offset = 97.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow82" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow83" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0338043, -0.0429752, 0.998504, -0.00382173, 0.999062, 0.0431286, -0.999421, -0.00527394, 0.0336084, 28.3395, 0.191226, -6.75519 )
+transform = Transform( 0.0338043, -0.0429752, 0.998504, -0.00382173, 0.999062, 0.0431286, -0.999421, -0.00527395, 0.0336084, 28.3395, 0.191226, -6.75519 )
 offset = 98.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow83" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow84" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0222598, -0.0431602, 0.99882, -0.00431664, 0.999054, 0.0432666, -0.999743, -0.00527465, 0.0220524, 29.5447, 0.243425, -6.72074 )
+transform = Transform( 0.0222598, -0.0431603, 0.99882, -0.00431664, 0.999054, 0.0432666, -0.999743, -0.00527465, 0.0220524, 29.5447, 0.243425, -6.72074 )
 offset = 99.6
 rotation_mode = 4
 
@@ -645,28 +650,28 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow85" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow86" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.00583764, -0.0414328, 0.999123, -0.0050234, 0.999127, 0.0414622, -0.99997, -0.00526105, 0.0056244, 31.9371, 0.345529, -6.6873 )
+transform = Transform( 0.00583764, -0.0414328, 0.999124, -0.0050234, 0.999127, 0.0414623, -0.99997, -0.00526105, 0.00562441, 31.9371, 0.345529, -6.6873 )
 offset = 102.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow86" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow87" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00023861, -0.0397443, 0.999209, -0.00527156, 0.999196, 0.0397424, -0.999986, -0.00525791, -0.000447932, 33.13, 0.394222, -6.68371 )
+transform = Transform( -0.00023861, -0.0397443, 0.99921, -0.00527156, 0.999196, 0.0397425, -0.999986, -0.00525791, -0.000447932, 33.13, 0.394222, -6.68371 )
 offset = 103.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow87" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow88" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00537219, -0.0375528, 0.999279, -0.00547132, 0.999281, 0.0375233, -0.999971, -0.0052658, -0.00557378, 34.3246, 0.440678, -6.68688 )
+transform = Transform( -0.00537219, -0.0375528, 0.99928, -0.00547132, 0.999281, 0.0375234, -0.999971, -0.0052658, -0.00557379, 34.3246, 0.440678, -6.68688 )
 offset = 104.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow88" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow89" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00977212, -0.0348327, 0.999344, -0.00563182, 0.999379, 0.0347788, -0.999936, -0.00528827, -0.00996222, 35.5308, 0.484639, -6.69588 )
+transform = Transform( -0.00977213, -0.0348328, 0.999345, -0.00563182, 0.999379, 0.0347788, -0.999936, -0.00528827, -0.00996223, 35.5308, 0.484639, -6.69588 )
 offset = 105.6
 rotation_mode = 4
 
@@ -680,21 +685,21 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow90" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow91" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0167013, -0.0277018, 0.999477, -0.00585279, 0.999602, 0.0276075, -0.999843, -0.00538865, -0.0168568, 37.9393, 0.561017, -6.72793 )
+transform = Transform( -0.0167014, -0.0277018, 0.999477, -0.00585279, 0.999602, 0.0276075, -0.999843, -0.00538865, -0.0168568, 37.9393, 0.561017, -6.72793 )
 offset = 108.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow91" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow92" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0194072, -0.023133, 0.999543, -0.00592268, 0.999717, 0.023022, -0.999794, -0.00547319, -0.0195387, 39.1424, 0.592025, -6.74961 )
+transform = Transform( -0.0194072, -0.023133, 0.999544, -0.00592268, 0.999717, 0.023022, -0.999794, -0.00547319, -0.0195387, 39.1424, 0.592025, -6.74961 )
 offset = 109.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow92" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow93" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0216689, -0.0177619, 0.999607, -0.00597001, 0.999827, 0.0176364, -0.999747, -0.00558551, -0.0217712, 40.3402, 0.617018, -6.77417 )
+transform = Transform( -0.0216689, -0.0177619, 0.999607, -0.00597001, 0.999826, 0.0176364, -0.999747, -0.00558551, -0.0217712, 40.3402, 0.617018, -6.77417 )
 offset = 110.4
 rotation_mode = 4
 
@@ -715,49 +720,49 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow95" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow96" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0257913, 0.00589419, 0.999649, -0.00600912, 0.999964, -0.00605107, -0.999649, -0.00616308, -0.0257549, 43.9325, 0.644377, -6.86038 )
+transform = Transform( -0.0257913, 0.00589419, 0.99965, -0.00600912, 0.999964, -0.00605108, -0.999649, -0.00616308, -0.0257549, 43.9325, 0.644377, -6.86038 )
 offset = 114.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow96" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow97" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0261316, 0.0178795, 0.999499, -0.00600598, 0.999819, -0.0180423, -0.99964, -0.00647445, -0.0260196, 45.1324, 0.63141, -6.89149 )
+transform = Transform( -0.0261317, 0.0178795, 0.999498, -0.00600599, 0.999819, -0.0180423, -0.99964, -0.00647445, -0.0260195, 45.1324, 0.63141, -6.89149 )
 offset = 115.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow97" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow98" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0256946, 0.0335467, 0.999107, -0.00601772, 0.999413, -0.0337117, -0.999652, -0.00687854, -0.0254776, 46.3323, 0.602342, -6.92255 )
+transform = Transform( -0.0256946, 0.0335467, 0.999107, -0.00601771, 0.999413, -0.0337117, -0.999652, -0.00687855, -0.0254776, 46.3323, 0.602342, -6.92255 )
 offset = 116.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow98" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow99" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0241549, 0.0552152, 0.998181, -0.00608521, 0.998447, -0.055377, -0.99969, -0.00741178, -0.0237813, 47.5357, 0.551577, -6.95255 )
+transform = Transform( -0.0241549, 0.0552152, 0.998182, -0.00608521, 0.998447, -0.0553771, -0.99969, -0.00741178, -0.0237813, 47.5357, 0.551577, -6.95255 )
 offset = 117.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow99" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow100" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0206579, 0.0874674, 0.995953, -0.00632903, 0.996134, -0.0876146, -0.999767, -0.00811335, -0.0200245, 48.7359, 0.470193, -6.97956 )
+transform = Transform( -0.0206579, 0.0874674, 0.995953, -0.00632903, 0.996134, -0.0876146, -0.999767, -0.00811336, -0.0200245, 48.7359, 0.470193, -6.97956 )
 offset = 118.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow100" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow101" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0130421, 0.142573, 0.989698, -0.00718166, 0.989744, -0.142674, -0.999888, -0.00896847, -0.0118845, 49.9289, 0.340866, -7.00017 )
+transform = Transform( -0.0130421, 0.142573, 0.989698, -0.00718167, 0.989744, -0.142674, -0.999889, -0.00896847, -0.0118845, 49.9289, 0.340866, -7.00017 )
 offset = 120.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow101" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow102" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.00753826, 0.269205, 0.963053, -0.0112933, 0.963042, -0.269113, -0.999908, -0.00884737, 0.0102999, 51.108, 0.11913, -7.00589 )
+transform = Transform( 0.00753825, 0.269205, 0.963053, -0.0112933, 0.963042, -0.269113, -0.999908, -0.00884737, 0.0102999, 51.108, 0.11913, -7.00589 )
 offset = 121.2
 rotation_mode = 4
 
@@ -771,7 +776,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow103" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow104" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.00491408, 0.40526, 0.914188, -0.00913004, 0.914179, -0.405207, -0.999946, -0.00635535, 0.00819239, 53.3443, -0.75667, -6.97185 )
+transform = Transform( 0.00491408, 0.40526, 0.914188, -0.00913004, 0.914179, -0.405207, -0.999946, -0.00635536, 0.00819239, 53.3443, -0.75667, -6.97185 )
 offset = 123.6
 rotation_mode = 4
 
@@ -785,14 +790,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow105" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow106" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.000114754, 0.423404, 0.90594, -0.00684257, 0.905919, -0.423394, -0.999977, -0.00624755, 0.00279321, 55.5254, -1.75277, -6.95905 )
+transform = Transform( -0.000114754, 0.423404, 0.905941, -0.00684257, 0.905919, -0.423395, -0.999977, -0.00624755, 0.00279321, 55.5254, -1.75277, -6.95905 )
 offset = 126.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow106" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow107" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00151647, 0.426444, 0.904513, -0.00618486, 0.904492, -0.426445, -0.99998, -0.00624097, 0.00126586, 56.6093, -2.26143, -6.95651 )
+transform = Transform( -0.00151647, 0.426444, 0.904513, -0.00618485, 0.904492, -0.426445, -0.99998, -0.00624097, 0.00126585, 56.6093, -2.26143, -6.95651 )
 offset = 127.2
 rotation_mode = 4
 
@@ -806,63 +811,63 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow108" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow109" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00335711, 0.427056, 0.904219, -0.00531512, 0.904204, -0.427068, -0.99998, -0.00623975, -0.000765662, 58.7852, -3.2897, -6.95589 )
+transform = Transform( -0.00335711, 0.427056, 0.904219, -0.00531512, 0.904204, -0.427068, -0.99998, -0.00623975, -0.000765663, 58.7852, -3.2897, -6.95589 )
 offset = 129.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow109" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow110" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00398003, 0.42538, 0.905006, -0.00502139, 0.904994, -0.425396, -0.999979, -0.00623749, -0.00146591, 59.8751, -3.80358, -6.95718 )
+transform = Transform( -0.00398003, 0.42538, 0.905006, -0.0050214, 0.904994, -0.425396, -0.999979, -0.00623748, -0.00146591, 59.8751, -3.80358, -6.95718 )
 offset = 130.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow110" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow111" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00447228, 0.422506, 0.906349, -0.00479072, 0.906339, -0.422525, -0.999979, -0.00623171, -0.00202929, 60.9675, -4.31545, -6.95924 )
+transform = Transform( -0.00447228, 0.422506, 0.906349, -0.00479071, 0.906339, -0.422525, -0.999979, -0.00623171, -0.00202929, 60.9675, -4.31545, -6.95924 )
 offset = 132.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow111" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow112" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00487039, 0.41865, 0.908134, -0.00460591, 0.908126, -0.418671, -0.999978, -0.00622187, -0.00249466, 62.057, -4.82113, -6.96192 )
+transform = Transform( -0.00487039, 0.41865, 0.908134, -0.0046059, 0.908126, -0.418671, -0.999978, -0.00622187, -0.00249466, 62.057, -4.82113, -6.96192 )
 offset = 133.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow112" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow113" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00515709, 0.41368, 0.910408, -0.00447449, 0.910401, -0.413702, -0.999977, -0.00620711, -0.00284401, 63.1494, -5.32188, -6.96509 )
+transform = Transform( -0.00515708, 0.41368, 0.910408, -0.00447449, 0.910401, -0.413702, -0.999977, -0.00620711, -0.00284401, 63.1494, -5.32188, -6.96509 )
 offset = 134.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow113" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow114" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00536689, 0.407432, 0.91322, -0.0043798, 0.913213, -0.407456, -0.999976, -0.00618648, -0.00311665, 64.2464, -5.81671, -6.96866 )
+transform = Transform( -0.00536689, 0.407432, 0.91322, -0.0043798, 0.913214, -0.407456, -0.999976, -0.00618649, -0.00311665, 64.2464, -5.81671, -6.96866 )
 offset = 135.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow114" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow115" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00549805, 0.399861, 0.916559, -0.00432171, 0.916555, -0.399884, -0.999976, -0.00615969, -0.00331119, 65.3415, -6.30098, -6.9725 )
+transform = Transform( -0.00549805, 0.399861, 0.916559, -0.00432171, 0.916555, -0.399885, -0.999976, -0.00615969, -0.00331119, 65.3415, -6.30098, -6.9725 )
 offset = 136.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow115" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow116" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00555786, 0.390465, 0.9206, -0.00429574, 0.920597, -0.390489, -0.999975, -0.00612495, -0.00343921, 66.4521, -6.78008, -6.97659 )
+transform = Transform( -0.00555786, 0.390465, 0.920601, -0.00429574, 0.920597, -0.390489, -0.999975, -0.00612495, -0.00343921, 66.4521, -6.78008, -6.97659 )
 offset = 138.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow116" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow117" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00553054, 0.378957, 0.925398, -0.00430697, 0.925395, -0.378981, -0.999975, -0.00608164, -0.00348578, 67.563, -7.24475, -6.98077 )
+transform = Transform( -0.00553055, 0.378956, 0.925398, -0.00430697, 0.925395, -0.378981, -0.999975, -0.00608164, -0.00348578, 67.563, -7.24475, -6.98077 )
 offset = 139.2
 rotation_mode = 4
 
@@ -876,70 +881,70 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow118" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow119" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00516056, 0.346629, 0.937988, -0.00445055, 0.937983, -0.346652, -0.999977, -0.00596347, -0.00329782, 69.7949, -8.12109, -6.98901 )
+transform = Transform( -0.00516055, 0.346629, 0.937988, -0.00445055, 0.937983, -0.346652, -0.999977, -0.00596348, -0.00329782, 69.7949, -8.12109, -6.98901 )
 offset = 141.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow119" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow120" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00473082, 0.322875, 0.94643, -0.00460406, 0.946424, -0.322895, -0.999978, -0.00588499, -0.00299083, 70.9252, -8.52611, -6.99284 )
+transform = Transform( -0.00473082, 0.322874, 0.94643, -0.00460406, 0.946424, -0.322895, -0.999978, -0.00588498, -0.00299083, 70.9252, -8.52611, -6.99284 )
 offset = 142.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow120" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow121" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00405865, 0.290381, 0.956903, -0.00482258, 0.956894, -0.290398, -0.99998, -0.00579337, -0.00248331, 72.0656, -8.89829, -6.99619 )
+transform = Transform( -0.00405865, 0.290381, 0.956902, -0.00482258, 0.956894, -0.290398, -0.99998, -0.00579337, -0.00248331, 72.0656, -8.89829, -6.99619 )
 offset = 144.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow121" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow122" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.00294852, 0.242822, 0.970066, -0.00513489, 0.970054, -0.242834, -0.999982, -0.00569719, -0.00161336, 73.2176, -9.22422, -6.99876 )
+transform = Transform( -0.00294852, 0.242822, 0.970066, -0.00513489, 0.970054, -0.242835, -0.999982, -0.00569719, -0.00161336, 73.2176, -9.22422, -6.99876 )
 offset = 145.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow122" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow123" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.000110334, 0.165851, 0.986151, -0.00576147, 0.986136, -0.165848, -0.999983, -0.00566339, 0.00106435, 74.3895, -9.48105, -6.99999 )
+transform = Transform( 0.000110334, 0.165851, 0.986151, -0.00576147, 0.986135, -0.165848, -0.999983, -0.00566338, 0.00106435, 74.3895, -9.48105, -6.99999 )
 offset = 146.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow123" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow124" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0517325, 0.105639, 0.993058, -0.0130638, 0.994376, -0.105099, -0.998576, -0.00753608, 0.0528216, 75.5738, -9.64615, -6.97087 )
+transform = Transform( 0.0517325, 0.105639, 0.993058, -0.0130638, 0.994376, -0.105099, -0.998575, -0.00753608, 0.0528216, 75.5738, -9.64615, -6.97087 )
 offset = 147.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow124" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow125" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.083132, 0.0668303, 0.994295, -0.0158796, 0.997711, -0.0657322, -0.996412, -0.0103246, 0.0840029, 76.7662, -9.75109, -6.89034 )
+transform = Transform( 0.083132, 0.0668303, 0.994295, -0.0158797, 0.997711, -0.0657322, -0.996412, -0.0103246, 0.0840029, 76.7662, -9.75109, -6.89034 )
 offset = 148.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow125" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow126" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.1021, 0.0396143, 0.993984, -0.016922, 0.999131, -0.0380812, -0.99463, -0.0129321, 0.102681, 77.9561, -9.8151, -6.77955 )
+transform = Transform( 0.1021, 0.0396143, 0.993985, -0.016922, 0.999131, -0.0380813, -0.99463, -0.0129321, 0.102681, 77.9561, -9.8151, -6.77955 )
 offset = 150.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow126" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow127" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.113218, 0.0195417, 0.993377, -0.0172585, 0.999694, -0.0176989, -0.99342, -0.0151404, 0.113521, 79.1473, -9.85001, -6.65043 )
+transform = Transform( 0.113218, 0.0195417, 0.993378, -0.0172585, 0.999694, -0.0176989, -0.99342, -0.0151404, 0.113521, 79.1473, -9.85001, -6.65043 )
 offset = 151.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow127" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow128" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.118839, 0.00417528, 0.992905, -0.0173262, 0.999848, -0.00213074, -0.992762, -0.0169501, 0.118893, 80.3413, -9.86308, -6.5108 )
+transform = Transform( 0.118839, 0.00417528, 0.992905, -0.0173262, 0.999848, -0.00213074, -0.992762, -0.01695, 0.118893, 80.3413, -9.86308, -6.5108 )
 offset = 152.4
 rotation_mode = 4
 
@@ -960,42 +965,42 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow130" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow131" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.112915, -0.0246499, 0.993299, -0.0174793, 0.999488, 0.0267905, -0.99345, -0.0203873, 0.112427, 83.9309, -9.81493, -6.08307 )
+transform = Transform( 0.112915, -0.0246499, 0.993299, -0.0174793, 0.999488, 0.0267905, -0.993451, -0.0203873, 0.112427, 83.9309, -9.81493, -6.08307 )
 offset = 156.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow131" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow132" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.104683, -0.0303778, 0.994041, -0.0177232, 0.999318, 0.0324055, -0.994348, -0.0210099, 0.104073, 85.127, -9.77968, -5.95162 )
+transform = Transform( 0.104682, -0.0303778, 0.994041, -0.0177232, 0.999318, 0.0324055, -0.994348, -0.0210099, 0.104073, 85.127, -9.77968, -5.95162 )
 offset = 157.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow132" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow133" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.093434, -0.0346348, 0.995023, -0.0181112, 0.99917, 0.0364799, -0.995461, -0.0214295, 0.0927292, 86.3223, -9.73854, -5.83191 )
+transform = Transform( 0.093434, -0.0346348, 0.995023, -0.0181112, 0.99917, 0.0364798, -0.995461, -0.0214295, 0.0927291, 86.3223, -9.73854, -5.83191 )
 offset = 158.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow133" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow134" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0788584, -0.0375313, 0.996178, -0.0186635, 0.99906, 0.0391173, -0.996711, -0.0216769, 0.0780837, 87.5183, -9.69326, -5.7275 )
+transform = Transform( 0.0788584, -0.0375313, 0.996179, -0.0186635, 0.99906, 0.0391173, -0.996711, -0.0216769, 0.0780838, 87.5183, -9.69326, -5.7275 )
 offset = 159.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow134" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow135" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0605974, -0.0391341, 0.997395, -0.0193917, 0.998995, 0.0403751, -0.997974, -0.0217878, 0.0597778, 88.7162, -9.64548, -5.64241 )
+transform = Transform( 0.0605974, -0.0391341, 0.997395, -0.0193917, 0.998996, 0.0403751, -0.997974, -0.0217878, 0.0597778, 88.7162, -9.64548, -5.64241 )
 offset = 160.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow135" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow136" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0381627, -0.0393783, 0.998495, -0.0202992, 0.998987, 0.0401735, -0.999065, -0.0218018, 0.0373247, 89.9065, -9.59728, -5.5818 )
+transform = Transform( 0.0381627, -0.0393783, 0.998495, -0.0202992, 0.998986, 0.0401735, -0.999065, -0.0218018, 0.0373247, 89.9065, -9.59728, -5.5818 )
 offset = 162.0
 rotation_mode = 4
 
@@ -1009,14 +1014,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow137" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow138" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0247597, -0.0351463, 0.999076, -0.0226926, 0.999144, 0.0345864, -0.999436, -0.0218153, -0.0255361, 92.3117, -9.5052, -5.55595 )
+transform = Transform( -0.0247597, -0.0351464, 0.999075, -0.0226926, 0.999144, 0.0345864, -0.999436, -0.0218153, -0.0255361, 92.3117, -9.5052, -5.55595 )
 offset = 164.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow138" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow139" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0683987, -0.0300553, 0.997205, -0.024094, 0.999304, 0.028466, -0.997367, -0.0220796, -0.0690753, 93.5112, -9.46645, -5.60744 )
+transform = Transform( -0.0683987, -0.0300554, 0.997205, -0.024094, 0.999304, 0.028466, -0.997367, -0.0220796, -0.0690753, 93.5112, -9.46645, -5.60744 )
 offset = 165.6
 rotation_mode = 4
 
@@ -1030,7 +1035,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow140" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow141" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.195608, -0.0107093, 0.980624, -0.026447, 0.999634, 0.00564149, -0.980325, -0.024831, -0.19582, 95.8929, -9.41979, -5.89996 )
+transform = Transform( -0.195608, -0.0107093, 0.980624, -0.026447, 0.999634, 0.00564148, -0.980325, -0.024831, -0.19582, 95.8929, -9.41979, -5.89996 )
 offset = 168.0
 rotation_mode = 4
 
@@ -1044,35 +1049,35 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow142" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow143" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.413036, 0.0289455, 0.910254, -0.0227752, 0.998854, -0.0420974, -0.910429, -0.038119, -0.411904, 98.1917, -9.45212, -6.58586 )
+transform = Transform( -0.413036, 0.0289455, 0.910254, -0.0227752, 0.998854, -0.0420974, -0.91043, -0.038119, -0.411904, 98.1917, -9.45212, -6.58586 )
 offset = 170.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow143" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow144" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.599033, -0.015006, 0.800584, -0.0121763, 0.999879, 0.00963064, -0.800632, -0.00397911, -0.599144, 99.24, -9.51104, -7.15646 )
+transform = Transform( -0.599033, -0.015006, 0.800584, -0.0121763, 0.999879, 0.00963063, -0.800632, -0.00397912, -0.599144, 99.24, -9.51104, -7.15646 )
 offset = 171.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow144" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow145" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.799347, -0.162067, 0.5786, -0.0400882, 0.975177, 0.217766, -0.59953, 0.150876, -0.786003, 100.089, -9.38905, -7.97864 )
+transform = Transform( -0.799348, -0.162067, 0.5786, -0.0400882, 0.975177, 0.217766, -0.59953, 0.150876, -0.786002, 100.089, -9.38905, -7.97864 )
 offset = 172.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow145" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow146" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.897113, -0.231405, 0.376349, -0.095205, 0.933099, 0.346789, -0.431419, 0.275279, -0.859127, 100.678, -9.05505, -8.96877 )
+transform = Transform( -0.897114, -0.231405, 0.376349, -0.0952051, 0.933099, 0.346789, -0.43142, 0.275279, -0.859127, 100.678, -9.05505, -8.96877 )
 offset = 174.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow146" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow147" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.93765, -0.259268, 0.2315, -0.144914, 0.896987, 0.41763, -0.31593, 0.358044, -0.878631, 101.053, -8.59925, -10.013 )
+transform = Transform( -0.93765, -0.259268, 0.2315, -0.144914, 0.896986, 0.41763, -0.31593, 0.358044, -0.878631, 101.053, -8.59925, -10.013 )
 offset = 175.2
 rotation_mode = 4
 
@@ -1086,49 +1091,49 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow148" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow149" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.960262, -0.274009, 0.0530719, -0.215402, 0.848499, 0.483375, -0.177481, 0.452735, -0.873803, 101.39, -7.51165, -12.1222 )
+transform = Transform( -0.960262, -0.274009, 0.0530719, -0.215402, 0.848499, 0.483375, -0.17748, 0.452735, -0.873803, 101.39, -7.51165, -12.1222 )
 offset = 177.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow149" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow150" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.961525, -0.274665, -0.00549255, -0.240592, 0.832256, 0.499465, -0.132614, 0.481569, -0.866317, 101.423, -6.92397, -13.1652 )
+transform = Transform( -0.961524, -0.274665, -0.00549255, -0.240592, 0.832256, 0.499465, -0.132614, 0.481569, -0.866317, 101.423, -6.92397, -13.1652 )
 offset = 178.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow150" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow151" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.960331, -0.273838, -0.0527069, -0.261631, 0.819335, 0.510137, -0.0965102, 0.50369, -0.858477, 101.393, -6.32113, -14.197 )
+transform = Transform( -0.960331, -0.273838, -0.0527069, -0.261631, 0.819335, 0.510137, -0.0965101, 0.50369, -0.858477, 101.393, -6.32113, -14.197 )
 offset = 180.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow151" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow152" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.957789, -0.272296, -0.0921738, -0.279723, 0.808805, 0.517291, -0.0663057, 0.521239, -0.850831, 101.309, -5.70758, -15.2192 )
+transform = Transform( -0.957789, -0.272296, -0.0921739, -0.279723, 0.808805, 0.517291, -0.0663056, 0.521239, -0.850831, 101.309, -5.70758, -15.2192 )
 offset = 181.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow152" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow153" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.954345, -0.270384, -0.126951, -0.296071, 0.799942, 0.521954, -0.0395743, 0.535711, -0.843474, 101.18, -5.0803, -16.243 )
+transform = Transform( -0.954346, -0.270384, -0.126951, -0.296071, 0.799941, 0.521954, -0.0395743, 0.535711, -0.843473, 101.18, -5.0803, -16.243 )
 offset = 182.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow153" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow154" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.950341, -0.268341, -0.157623, -0.310806, 0.792546, 0.524661, -0.0158649, 0.547597, -0.836591, 101.013, -4.4542, -17.2489 )
+transform = Transform( -0.950341, -0.268342, -0.157623, -0.310806, 0.792547, 0.524661, -0.0158649, 0.547597, -0.836592, 101.013, -4.4542, -17.2489 )
 offset = 183.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow154" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow155" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.945841, -0.266255, -0.185723, -0.324574, 0.786239, 0.525814, 0.00602161, 0.557617, -0.830077, 100.811, -3.82792, -18.2432 )
+transform = Transform( -0.945841, -0.266255, -0.185723, -0.324574, 0.786239, 0.525814, 0.00602162, 0.557617, -0.830077, 100.811, -3.82792, -18.2432 )
 offset = 184.8
 rotation_mode = 4
 
@@ -1142,42 +1147,42 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow156" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow157" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.935212, -0.262093, -0.238085, -0.350903, 0.775982, 0.524137, 0.047377, 0.573724, -0.817678, 100.306, -2.56411, -20.2257 )
+transform = Transform( -0.935213, -0.262093, -0.238085, -0.350903, 0.775982, 0.524136, 0.047377, 0.573724, -0.817678, 100.306, -2.56411, -20.2257 )
 offset = 187.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow157" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow158" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.928803, -0.26006, -0.263997, -0.364245, 0.771781, 0.52123, 0.0681973, 0.58028, -0.811557, 100.005, -1.93152, -21.2116 )
+transform = Transform( -0.928803, -0.260059, -0.263997, -0.364245, 0.77178, 0.52123, 0.0681973, 0.580279, -0.811557, 100.005, -1.93152, -21.2116 )
 offset = 188.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow158" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow159" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.92154, -0.258121, -0.290064, -0.377848, 0.768175, 0.516854, 0.0894089, 0.585903, -0.805435, 99.6759, -1.30922, -22.1806 )
+transform = Transform( -0.92154, -0.258121, -0.290064, -0.377849, 0.768175, 0.516854, 0.0894089, 0.585902, -0.805435, 99.6759, -1.30922, -22.1806 )
 offset = 189.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow159" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow160" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.9129, -0.256257, -0.31772, -0.392451, 0.765046, 0.510575, 0.112232, 0.590793, -0.798978, 99.3145, -0.692455, -23.1431 )
+transform = Transform( -0.9129, -0.256257, -0.31772, -0.392451, 0.765046, 0.510575, 0.112232, 0.590794, -0.798979, 99.3145, -0.692455, -23.1431 )
 offset = 190.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow160" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow161" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.902228, -0.254464, -0.348184, -0.408671, 0.762338, 0.501825, 0.137737, 0.595054, -0.791794, 98.9202, -0.0867003, -24.094 )
+transform = Transform( -0.902228, -0.254464, -0.348184, -0.408671, 0.762338, 0.501826, 0.137737, 0.595054, -0.791794, 98.9202, -0.0867003, -24.094 )
 offset = 192.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow161" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow162" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.888535, -0.252837, -0.382856, -0.427237, 0.760147, 0.489536, 0.167255, 0.59854, -0.783438, 98.4862, 0.509189, -25.0392 )
+transform = Transform( -0.888535, -0.252837, -0.382857, -0.427237, 0.760147, 0.489536, 0.167255, 0.59854, -0.783438, 98.4862, 0.509189, -25.0392 )
 offset = 193.2
 rotation_mode = 4
 
@@ -1198,7 +1203,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow164" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow165" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.79143, -0.250861, -0.557412, -0.518848, 0.757812, 0.395624, 0.323167, 0.60232, -0.729913, 96.854, 2.15918, -27.8015 )
+transform = Transform( -0.791429, -0.250861, -0.557412, -0.518848, 0.757812, 0.395624, 0.323167, 0.60232, -0.729913, 96.854, 2.15918, -27.8015 )
 offset = 196.8
 rotation_mode = 4
 
@@ -1212,21 +1217,21 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow166" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow167" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.464381, -0.209628, -0.860468, -0.63903, 0.751999, 0.161672, 0.61318, 0.624943, -0.483173, 95.2116, 2.85747, -29.3726 )
+transform = Transform( -0.464381, -0.209628, -0.860468, -0.639031, 0.751999, 0.161672, 0.61318, 0.624943, -0.483173, 95.2116, 2.85747, -29.3726 )
 offset = 199.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow167" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow168" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.299682, -0.110458, -0.947623, -0.663802, 0.737565, 0.123952, 0.685242, 0.666181, -0.294357, 94.126, 3.03202, -29.8548 )
+transform = Transform( -0.299682, -0.110458, -0.947623, -0.663803, 0.737565, 0.123952, 0.685242, 0.666181, -0.294357, 94.126, 3.03202, -29.8548 )
 offset = 200.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow168" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow169" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.175837, -0.0326528, -0.983878, -0.677299, 0.729306, 0.096842, 0.714385, 0.683408, -0.150355, 92.9647, 3.16655, -30.1327 )
+transform = Transform( -0.175837, -0.0326528, -0.983878, -0.677299, 0.729306, 0.096842, 0.714386, 0.683408, -0.150355, 92.9647, 3.16655, -30.1327 )
 offset = 201.6
 rotation_mode = 4
 
@@ -1254,14 +1259,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow172" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow173" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.0892675, 0.162843, -0.982605, -0.695916, 0.715981, 0.0554342, 0.712554, 0.678862, 0.177239, 88.2031, 3.50471, -29.9993 )
+transform = Transform( 0.0892674, 0.162843, -0.982605, -0.695916, 0.715981, 0.0554343, 0.712554, 0.678862, 0.177239, 88.2031, 3.50471, -29.9993 )
 offset = 206.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow173" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow174" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.129212, 0.201147, -0.971001, -0.698066, 0.713918, 0.0549988, 0.704279, 0.670717, 0.23266, 87.0306, 3.57065, -29.7587 )
+transform = Transform( 0.129212, 0.201147, -0.971002, -0.698066, 0.713918, 0.0549989, 0.704278, 0.670717, 0.232661, 87.0306, 3.57065, -29.7587 )
 offset = 207.6
 rotation_mode = 4
 
@@ -1275,28 +1280,28 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow175" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow176" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.198245, 0.280836, -0.939058, -0.702087, 0.70922, 0.0638819, 0.683939, 0.646636, 0.33777, 84.7387, 3.70933, -29.0864 )
+transform = Transform( 0.198245, 0.280836, -0.939058, -0.702087, 0.70922, 0.063882, 0.683939, 0.646636, 0.33777, 84.7387, 3.70933, -29.0864 )
 offset = 210.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow176" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow177" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.230873, 0.326858, -0.91644, -0.704397, 0.705905, 0.0743148, 0.67121, 0.62838, 0.393213, 83.6226, 3.79072, -28.6538 )
+transform = Transform( 0.230873, 0.326859, -0.916439, -0.704397, 0.705905, 0.0743147, 0.67121, 0.62838, 0.393213, 83.6226, 3.79072, -28.6538 )
 offset = 211.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow177" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow178" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.264467, 0.381336, -0.8858, -0.707315, 0.701065, 0.0906298, 0.655563, 0.60257, 0.455133, 82.5384, 3.88726, -28.1525 )
+transform = Transform( 0.264467, 0.381336, -0.885799, -0.707315, 0.701065, 0.0906298, 0.655563, 0.60257, 0.455133, 82.5384, 3.88726, -28.1525 )
 offset = 212.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow178" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow179" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.30167, 0.450669, -0.840174, -0.711529, 0.692977, 0.116233, 0.634604, 0.562744, 0.529714, 81.4952, 4.00782, -27.57 )
+transform = Transform( 0.30167, 0.450669, -0.840174, -0.711529, 0.692976, 0.116233, 0.634604, 0.562744, 0.529714, 81.4952, 4.00782, -27.57 )
 offset = 213.6
 rotation_mode = 4
 
@@ -1331,28 +1336,28 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow183" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow184" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.528533, 0.8355, 0.150308, -0.848013, 0.511484, 0.138768, 0.0390609, -0.200807, 0.978851, 79.0579, 5.13136, -22.7284 )
+transform = Transform( 0.528533, 0.8355, 0.150308, -0.848014, 0.511484, 0.138769, 0.0390609, -0.200807, 0.978852, 79.0579, 5.13136, -22.7284 )
 offset = 219.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow184" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow185" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.517302, 0.824709, 0.228591, -0.855572, 0.504581, 0.115737, -0.0198935, -0.255447, 0.966618, 79.2808, 5.28534, -21.5607 )
+transform = Transform( 0.517302, 0.824709, 0.228591, -0.855571, 0.504581, 0.115737, -0.0198935, -0.255447, 0.966618, 79.2808, 5.28534, -21.5607 )
 offset = 220.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow185" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow186" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.507328, 0.815415, 0.278777, -0.859793, 0.500761, 0.0999689, -0.0580845, -0.290408, 0.955138, 79.5815, 5.41556, -20.4088 )
+transform = Transform( 0.507328, 0.815415, 0.278777, -0.859793, 0.500761, 0.0999689, -0.0580845, -0.290408, 0.955139, 79.5815, 5.41556, -20.4088 )
 offset = 222.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow186" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow187" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.499134, 0.807964, 0.313145, -0.862389, 0.498447, 0.0885227, -0.0845631, -0.314238, 0.94557, 79.9346, 5.52952, -19.2671 )
+transform = Transform( 0.499134, 0.807964, 0.313145, -0.862389, 0.498447, 0.0885228, -0.0845631, -0.314238, 0.945571, 79.9346, 5.52952, -19.2671 )
 offset = 223.2
 rotation_mode = 4
 
@@ -1366,7 +1371,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow188" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow189" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.487607, 0.797894, 0.354407, -0.865177, 0.496039, 0.0735875, -0.117085, -0.342507, 0.932191, 80.7362, 5.72363, -17.0173 )
+transform = Transform( 0.487607, 0.797894, 0.354407, -0.865176, 0.496039, 0.0735875, -0.117085, -0.342507, 0.932191, 80.7362, 5.72363, -17.0173 )
 offset = 225.6
 rotation_mode = 4
 
@@ -1380,35 +1385,35 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow190" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow191" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.481757, 0.793705, 0.371407, -0.866295, 0.495239, 0.0653467, -0.132069, -0.35323, 0.926168, 81.6075, 5.88966, -14.7934 )
+transform = Transform( 0.481757, 0.793705, 0.371407, -0.866296, 0.495239, 0.0653466, -0.132069, -0.35323, 0.926167, 81.6075, 5.88966, -14.7934 )
 offset = 228.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow191" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow192" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.481134, 0.794105, 0.37136, -0.866404, 0.495307, 0.0633625, -0.133621, -0.352234, 0.926325, 82.0532, 5.96681, -13.6839 )
+transform = Transform( 0.481134, 0.794105, 0.37136, -0.866404, 0.495307, 0.0633625, -0.133621, -0.352234, 0.926324, 82.0532, 5.96681, -13.6839 )
 offset = 229.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow192" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow193" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.482547, 0.796779, 0.36372, -0.86616, 0.495769, 0.0630872, -0.130054, -0.345483, 0.92937, 82.4953, 6.04239, -12.5727 )
+transform = Transform( 0.482547, 0.796778, 0.36372, -0.86616, 0.495768, 0.0630872, -0.130054, -0.345483, 0.929369, 82.4953, 6.04239, -12.5727 )
 offset = 230.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow193" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow194" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.487306, 0.803241, 0.342546, -0.865286, 0.496964, 0.0656185, -0.117525, -0.328376, 0.937207, 82.9225, 6.11891, -11.4555 )
+transform = Transform( 0.487306, 0.803241, 0.342546, -0.865287, 0.496964, 0.0656184, -0.117525, -0.328376, 0.937207, 82.9225, 6.11891, -11.4555 )
 offset = 231.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow194" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow195" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.498883, 0.817421, 0.287992, -0.862669, 0.500252, 0.0744986, -0.0831716, -0.285608, 0.954731, 83.3121, 6.20119, -10.3222 )
+transform = Transform( 0.498883, 0.817421, 0.287991, -0.862669, 0.500252, 0.0744985, -0.0831716, -0.285607, 0.954731, 83.3121, 6.20119, -10.3222 )
 offset = 232.8
 rotation_mode = 4
 
@@ -1429,7 +1434,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow197" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow198" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.451532, 0.760375, -0.46685, -0.779427, 0.590809, 0.208419, 0.434295, 0.269768, 0.859426, 82.9389, 6.71546, -6.91522 )
+transform = Transform( 0.451532, 0.760375, -0.466849, -0.779427, 0.590809, 0.208419, 0.434295, 0.269768, 0.859426, 82.9389, 6.71546, -6.91522 )
 offset = 236.4
 rotation_mode = 4
 
@@ -1443,14 +1448,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow199" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow200" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.375825, 0.693335, -0.614852, -0.747493, 0.618977, 0.241086, 0.547732, 0.368991, 0.75089, 81.6404, 7.25294, -4.97432 )
+transform = Transform( 0.375825, 0.693335, -0.614851, -0.747493, 0.618977, 0.241085, 0.547732, 0.368991, 0.75089, 81.6404, 7.25294, -4.97432 )
 offset = 238.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow200" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow201" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.331853, 0.658851, -0.675122, -0.730219, 0.632497, 0.258317, 0.597204, 0.407264, 0.691002, 80.8719, 7.55082, -4.10114 )
+transform = Transform( 0.331853, 0.658851, -0.675122, -0.730219, 0.632496, 0.258317, 0.597204, 0.407264, 0.691001, 80.8719, 7.55082, -4.10114 )
 offset = 240.0
 rotation_mode = 4
 
@@ -1464,42 +1469,42 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow202" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow203" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.150538, 0.532161, -0.833153, -0.659914, 0.6816, 0.316123, 0.736105, 0.502221, 0.453787, 79.0965, 8.22413, -2.64595 )
+transform = Transform( 0.150538, 0.532161, -0.833153, -0.659914, 0.6816, 0.316123, 0.736106, 0.502221, 0.453787, 79.0965, 8.22413, -2.64595 )
 offset = 242.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow203" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow204" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.21341, 0.298139, -0.930359, -0.510438, 0.777955, 0.366386, 0.833012, 0.553082, -0.0138422, 78.0402, 8.62935, -2.27494 )
+transform = Transform( -0.21341, 0.298139, -0.93036, -0.510438, 0.777955, 0.366386, 0.833012, 0.553082, -0.0138422, 78.0402, 8.62935, -2.27494 )
 offset = 243.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow204" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow205" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.357953, 0.310256, -0.880688, -0.4482, 0.770332, 0.453548, 0.819138, 0.557073, -0.136686, 76.9654, 9.10809, -2.48104 )
+transform = Transform( -0.357953, 0.310256, -0.880688, -0.448199, 0.770332, 0.453548, 0.819138, 0.557073, -0.136686, 76.9654, 9.10809, -2.48104 )
 offset = 244.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow205" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow206" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.330103, 0.350642, -0.876403, -0.462793, 0.749085, 0.474018, 0.822712, 0.562068, -0.0850006, 75.909, 9.66665, -2.61363 )
+transform = Transform( -0.330103, 0.350643, -0.876403, -0.462793, 0.749086, 0.474018, 0.822712, 0.562068, -0.0850006, 75.909, 9.66665, -2.61363 )
 offset = 246.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow206" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow207" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.318313, 0.364071, -0.875288, -0.469197, 0.741787, 0.479173, 0.82373, 0.56321, -0.0652997, 74.8558, 10.24, -2.70453 )
+transform = Transform( -0.318313, 0.36407, -0.875288, -0.469197, 0.741787, 0.479173, 0.82373, 0.563209, -0.0652997, 74.8558, 10.24, -2.70453 )
 offset = 247.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow207" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow208" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.311213, 0.368957, -0.875794, -0.473082, 0.739113, 0.479485, 0.82422, 0.563545, -0.0554748, 73.8004, 10.8181, -2.7777 )
+transform = Transform( -0.311214, 0.368957, -0.875795, -0.473082, 0.739113, 0.479485, 0.82422, 0.563545, -0.0554748, 73.8004, 10.8181, -2.7777 )
 offset = 248.4
 rotation_mode = 4
 
@@ -1513,28 +1518,28 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow209" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow210" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.302583, 0.367041, -0.879616, -0.477778, 0.740145, 0.473197, 0.824725, 0.563443, -0.0485913, 71.6949, 11.9635, -2.90086 )
+transform = Transform( -0.302583, 0.367041, -0.879616, -0.477778, 0.740144, 0.473196, 0.824725, 0.563442, -0.0485913, 71.6949, 11.9635, -2.90086 )
 offset = 250.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow210" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow211" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.299568, 0.361972, -0.882743, -0.47939, 0.742847, 0.467294, 0.824891, 0.563164, -0.0490071, 70.6348, 12.5302, -2.95933 )
+transform = Transform( -0.299568, 0.361973, -0.882743, -0.47939, 0.742847, 0.467294, 0.824891, 0.563164, -0.0490071, 70.6348, 12.5302, -2.95933 )
 offset = 252.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow211" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow212" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.296964, 0.353987, -0.886851, -0.480756, 0.747026, 0.459157, 0.825037, 0.562713, -0.0516583, 69.5673, 13.0904, -3.0196 )
+transform = Transform( -0.296964, 0.353987, -0.886852, -0.480756, 0.747026, 0.459158, 0.825037, 0.562713, -0.0516584, 69.5673, 13.0904, -3.0196 )
 offset = 253.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow212" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow213" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.294551, 0.34242, -0.892181, -0.481991, 0.752922, 0.4481, 0.825182, 0.562012, -0.0567305, 68.5026, 13.6351, -3.08373 )
+transform = Transform( -0.294551, 0.34242, -0.892182, -0.481991, 0.752922, 0.4481, 0.825181, 0.562012, -0.0567306, 68.5026, 13.6351, -3.08373 )
 offset = 254.4
 rotation_mode = 4
 
@@ -1555,14 +1560,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow215" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow216" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.287245, 0.25901, -0.922173, -0.485378, 0.790627, 0.373251, 0.825772, 0.554817, -0.101386, 65.248, 15.1509, -3.34421 )
+transform = Transform( -0.287245, 0.25901, -0.922174, -0.485378, 0.790628, 0.373251, 0.825772, 0.554817, -0.101386, 65.248, 15.1509, -3.34421 )
 offset = 258.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow216" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow217" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.283326, 0.174935, -0.942933, -0.486827, 0.820886, 0.298571, 0.826272, 0.543638, -0.147415, 64.1349, 15.5665, -3.48483 )
+transform = Transform( -0.283326, 0.174935, -0.942934, -0.486827, 0.820887, 0.298571, 0.826272, 0.543638, -0.147415, 64.1349, 15.5665, -3.48483 )
 offset = 259.2
 rotation_mode = 4
 
@@ -1576,21 +1581,21 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow218" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow219" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.17065, -0.161976, -0.971927, -0.421833, 0.879421, -0.220624, 0.890469, 0.447641, 0.0817461, 61.8272, 15.6839, -3.88949 )
+transform = Transform( 0.17065, -0.161976, -0.971927, -0.421833, 0.879421, -0.220624, 0.890469, 0.447641, 0.0817462, 61.8272, 15.6839, -3.88949 )
 offset = 261.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow219" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow220" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.303609, -0.137716, -0.942791, -0.388518, 0.885603, -0.254479, 0.869985, 0.443554, 0.215372, 60.6728, 15.397, -3.70981 )
+transform = Transform( 0.30361, -0.137717, -0.942791, -0.388518, 0.885604, -0.254479, 0.869985, 0.443554, 0.215372, 60.6728, 15.397, -3.70981 )
 offset = 262.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow220" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow221" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.353719, -0.126975, -0.926693, -0.374543, 0.888616, -0.264722, 0.857088, 0.440724, 0.266763, 59.552, 15.0859, -3.42201 )
+transform = Transform( 0.35372, -0.126975, -0.926693, -0.374543, 0.888617, -0.264722, 0.857088, 0.440724, 0.266763, 59.552, 15.0859, -3.42201 )
 offset = 264.0
 rotation_mode = 4
 
@@ -1604,49 +1609,49 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow222" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow223" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.382432, -0.116641, -0.916591, -0.366224, 0.891619, -0.266263, 0.848307, 0.437506, 0.298267, 57.3422, 14.4454, -2.73515 )
+transform = Transform( 0.382432, -0.116641, -0.916592, -0.366225, 0.891618, -0.266264, 0.848307, 0.437506, 0.298267, 57.3422, 14.4454, -2.73515 )
 offset = 266.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow223" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow224" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.379606, -0.11379, -0.918124, -0.367037, 0.892441, -0.262361, 0.849225, 0.43658, 0.29701, 56.2436, 14.1281, -2.3776 )
+transform = Transform( 0.379606, -0.11379, -0.918124, -0.367037, 0.892441, -0.262361, 0.849225, 0.436579, 0.29701, 56.2436, 14.1281, -2.3776 )
 offset = 267.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow224" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow225" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.368337, -0.111743, -0.922952, -0.370209, 0.893017, -0.255864, 0.852802, 0.43593, 0.287563, 55.1353, 13.815, -2.02371 )
+transform = Transform( 0.368338, -0.111743, -0.922952, -0.370209, 0.893017, -0.255864, 0.852803, 0.43593, 0.287563, 55.1353, 13.815, -2.02371 )
 offset = 268.8
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow225" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow226" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.348256, -0.110323, -0.930885, -0.37565, 0.893402, -0.246416, 0.858839, 0.435503, 0.269689, 54.0207, 13.5114, -1.68567 )
+transform = Transform( 0.348256, -0.110323, -0.930885, -0.37565, 0.893401, -0.246416, 0.858839, 0.435503, 0.269689, 54.0207, 13.5114, -1.68567 )
 offset = 270.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow226" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow227" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.317572, -0.109441, -0.941898, -0.383507, 0.893627, -0.233137, 0.86722, 0.435262, 0.24182, 52.8987, 13.222, -1.37493 )
+transform = Transform( 0.317572, -0.109441, -0.941897, -0.383507, 0.893627, -0.233137, 0.86722, 0.435262, 0.24182, 52.8987, 13.222, -1.37493 )
 offset = 271.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow227" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow228" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.271735, -0.109119, -0.956166, -0.394305, 0.893704, -0.21405, 0.877887, 0.435185, 0.199824, 51.7622, 12.9512, -1.10423 )
+transform = Transform( 0.271735, -0.109119, -0.956166, -0.394305, 0.893704, -0.214049, 0.877886, 0.435185, 0.199824, 51.7622, 12.9512, -1.10423 )
 offset = 272.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow228" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow229" type="PathFollow" parent="Track/Path"]
-transform = Transform( 0.202409, -0.109584, -0.97315, -0.40866, 0.893611, -0.185625, 0.889959, 0.43526, 0.136092, 50.6053, 12.7071, -0.893385 )
+transform = Transform( 0.202409, -0.109584, -0.973151, -0.40866, 0.893611, -0.185625, 0.88996, 0.43526, 0.136092, 50.6053, 12.7071, -0.893385 )
 offset = 273.6
 rotation_mode = 4
 
@@ -1660,14 +1665,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow230" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow231" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.0952295, -0.114975, -0.988794, -0.445915, 0.893002, -0.0608913, 0.889995, 0.435119, -0.136309, 48.2407, 12.3722, -0.810716 )
+transform = Transform( -0.0952295, -0.114975, -0.988793, -0.445915, 0.893002, -0.0608913, 0.889995, 0.435119, -0.136309, 48.2407, 12.3722, -0.810716 )
 offset = 276.0
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow231" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow232" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.40787, -0.120579, -0.905043, -0.442744, 0.893023, 0.0805513, 0.798512, 0.433557, -0.417622, 47.0806, 12.3627, -1.10579 )
+transform = Transform( -0.40787, -0.120578, -0.905043, -0.442744, 0.893023, 0.0805513, 0.798511, 0.433557, -0.417622, 47.0806, 12.3627, -1.10579 )
 offset = 277.2
 rotation_mode = 4
 
@@ -1688,7 +1693,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow234" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow235" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.780961, 0.0283247, -0.623938, -0.319092, 0.840668, 0.43756, 0.536918, 0.540811, -0.64749, 44.307, 13.3632, -3.09975 )
+transform = Transform( -0.780961, 0.0283246, -0.623938, -0.319092, 0.840667, 0.43756, 0.536918, 0.54081, -0.64749, 44.307, 13.3632, -3.09975 )
 offset = 280.8
 rotation_mode = 4
 
@@ -1702,14 +1707,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow236" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow237" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.868228, 0.0619721, -0.49228, -0.243612, 0.811099, 0.531763, 0.432242, 0.581616, -0.689122, 42.9668, 14.5297, -4.70601 )
+transform = Transform( -0.868228, 0.0619721, -0.49228, -0.243612, 0.811099, 0.531762, 0.432242, 0.581616, -0.689122, 42.9668, 14.5297, -4.70601 )
 offset = 283.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow237" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow238" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.8923, 0.0705002, -0.445904, -0.215707, 0.8011, 0.558309, 0.396575, 0.594364, -0.699614, 42.3991, 15.1834, -5.54035 )
+transform = Transform( -0.8923, 0.0705002, -0.445905, -0.215707, 0.8011, 0.558309, 0.396575, 0.594364, -0.699614, 42.3991, 15.1834, -5.54035 )
 offset = 284.4
 rotation_mode = 4
 
@@ -1737,28 +1742,28 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow241" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow242" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.912483, 0.0626093, -0.404296, -0.188162, 0.813274, 0.550619, 0.363277, 0.578504, -0.730317, 40.4872, 17.9484, -8.96378 )
+transform = Transform( -0.912483, 0.0626093, -0.404296, -0.188162, 0.813273, 0.550619, 0.363277, 0.578504, -0.730317, 40.4872, 17.9484, -8.96378 )
 offset = 289.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow242" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow243" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.870021, -0.0835668, -0.485882, -0.233335, 0.937959, 0.256491, 0.434303, 0.336525, -0.835543, 39.9501, 18.4837, -9.88354 )
+transform = Transform( -0.87002, -0.0835668, -0.485882, -0.233335, 0.937959, 0.25649, 0.434303, 0.336525, -0.835543, 39.9501, 18.4837, -9.88354 )
 offset = 290.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow243" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow244" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.860335, -0.138625, -0.490516, -0.237508, 0.960483, 0.145133, 0.451013, 0.241365, -0.859261, 39.3643, 18.7234, -10.9005 )
+transform = Transform( -0.860335, -0.138625, -0.490516, -0.237508, 0.960482, 0.145133, 0.451013, 0.241364, -0.859261, 39.3643, 18.7234, -10.9005 )
 offset = 291.6
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow244" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow245" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.856344, -0.16138, -0.490541, -0.238529, 0.96612, 0.0985645, 0.458016, 0.201413, -0.865826, 38.7756, 18.8714, -11.9355 )
+transform = Transform( -0.856344, -0.161381, -0.490541, -0.238529, 0.966121, 0.0985645, 0.458016, 0.201414, -0.865826, 38.7756, 18.8714, -11.9355 )
 offset = 292.8
 rotation_mode = 4
 
@@ -1772,21 +1777,21 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow246" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow247" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.852431, -0.183567, -0.489556, -0.239147, 0.969543, 0.0528648, 0.464941, 0.16214, -0.870368, 37.5984, 19.0509, -14.0213 )
+transform = Transform( -0.852431, -0.183567, -0.489556, -0.239147, 0.969543, 0.0528647, 0.464941, 0.16214, -0.870368, 37.5984, 19.0509, -14.0213 )
 offset = 295.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow247" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow248" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.85129, -0.190192, -0.48901, -0.239257, 0.970165, 0.0391783, 0.46697, 0.150351, -0.871397, 37.0125, 19.107, -15.0641 )
+transform = Transform( -0.851291, -0.190193, -0.48901, -0.239257, 0.970166, 0.0391784, 0.46697, 0.150351, -0.871397, 37.0125, 19.107, -15.0641 )
 offset = 296.4
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow248" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow249" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.850375, -0.195437, -0.488535, -0.239321, 0.970528, 0.0283217, 0.468601, 0.141001, -0.872084, 36.428, 19.1483, -16.1063 )
+transform = Transform( -0.850375, -0.195437, -0.488535, -0.239322, 0.970527, 0.0283217, 0.468601, 0.141001, -0.872084, 36.428, 19.1483, -16.1063 )
 offset = 297.6
 rotation_mode = 4
 
@@ -1807,7 +1812,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow251" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow252" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.848339, -0.206987, -0.487317, -0.239392, 0.970913, 0.0043495, 0.472241, 0.12035, -0.873215, 34.6693, 19.207, -19.2519 )
+transform = Transform( -0.848339, -0.206987, -0.487316, -0.239392, 0.970913, 0.0043495, 0.472242, 0.12035, -0.873215, 34.6693, 19.207, -19.2519 )
 offset = 301.2
 rotation_mode = 4
 
@@ -1821,7 +1826,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="Track/Path/TrackPathFollow253" instance=ExtResource( 4 )]
 
 [node name="TrackPathFollow254" type="PathFollow" parent="Track/Path"]
-transform = Transform( -0.847005, -0.214596, -0.486345, -0.239384, 0.970857, -0.0114779, 0.474634, 0.106701, -0.873692, 33.4997, 19.2017, -21.3499 )
+transform = Transform( -0.847005, -0.214596, -0.486345, -0.239384, 0.970857, -0.0114779, 0.474634, 0.106701, -0.873691, 33.4997, 19.2017, -21.3499 )
 offset = 303.6
 rotation_mode = 4
 

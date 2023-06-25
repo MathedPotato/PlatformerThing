@@ -44,10 +44,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Objects/DmgObj.gd"
 }, {
-"base": "Node",
+"base": "Area",
 "class": "DriveableObj",
 "language": "GDScript",
 "path": "res://Objects/Driveable/DriveableObj.gd"
+}, {
+"base": "Node",
+"class": "ExitVehicleInfo",
+"language": "GDScript",
+"path": "res://Objects/Driveable/ExitVehicleInfo.gd"
 }, {
 "base": "Area",
 "class": "GreatCylinder",
@@ -103,6 +108,7 @@ _global_script_class_icons={
 "CutscenePlayer": "",
 "DmgObj": "",
 "DriveableObj": "",
+"ExitVehicleInfo": "",
 "GreatCylinder": "",
 "InputComponent": "",
 "MinecartGame": "",

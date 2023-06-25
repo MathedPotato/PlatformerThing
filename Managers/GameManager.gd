@@ -113,3 +113,28 @@ func ProcessCutscene(animObj : AnimationPlayer, animName : String, camPath : Nod
 
 func LoadPlayerData():
 	pass
+
+var keyPressedLastFrame = {}
+
+func _input(event):
+	if Input.is_physical_key_pressed(KEY_1):
+		if !keyPressedLastFrame[KEY_1]:
+			loadLevel("res://Levels/Overworld/MainArea/MainArea.tscn")
+		keyPressedLastFrame[KEY_1] = true
+	else:
+		keyPressedLastFrame[KEY_1] = false
+	
+	if Input.is_physical_key_pressed(KEY_2):
+		if !keyPressedLastFrame[KEY_2]:
+			loadLevel("res://Levels/SubAreas/ButtonPushRoom.tscn")
+		keyPressedLastFrame[KEY_2] = true
+	else:
+		keyPressedLastFrame[KEY_2] = false
+	
+	if Input.is_physical_key_pressed(KEY_3):
+		if !keyPressedLastFrame[KEY_3]:
+			loadLevel("res://Levels/SubAreas/MinecartGame/MinecartGame.tscn")
+		keyPressedLastFrame[KEY_3] = true
+	else:
+		keyPressedLastFrame[KEY_3] = false
+	

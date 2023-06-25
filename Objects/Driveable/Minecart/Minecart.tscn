@@ -20,4 +20,6 @@ shape = SubResource( 1 )
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1.4, 0, 0, 0, 1, 0, 0, 0, 2.2, 0, 1, 0 )
 mesh = SubResource( 2 )
-material/0 = null
+
+[connection signal="body_entered" from="." to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Area_body_exited"]
