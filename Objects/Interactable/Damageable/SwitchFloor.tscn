@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Objects/Interactable/Damageable/SwitchFloorSub.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Interactable/Damageable/SwitchFloor.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="CubeMesh" id=4]
+
+[node name="SwitchFloor" type="Spatial"]
+script = ExtResource( 2 )
+unpressedPos = Vector3( 0, 0.3, 0 )
+pressedPos = Vector3( 0, 0.15, 0 )
+
+[node name="Switch" type="StaticBody" parent="."]
+transform = Transform( 0.9, 0, 0, 0, 0.1, 0, 0, 0, 0.9, 0, 0.2, 0 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Switch"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Switch"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Rim" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.05, 0, 0, 0, 1, 0, 0.05, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Rim"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Rim"]
+mesh = SubResource( 4 )
+material/0 = null

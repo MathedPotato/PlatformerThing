@@ -1,0 +1,206 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody",
+"class": "Char",
+"language": "GDScript",
+"path": "res://Characters/Char.gd"
+}, {
+"base": "KinematicBody",
+"class": "CharOld",
+"language": "GDScript",
+"path": "res://Characters/CharOld.gd"
+}, {
+"base": "Node",
+"class": "CharState",
+"language": "GDScript",
+"path": "res://Characters/CharState.gd"
+}, {
+"base": "CharState",
+"class": "CharStateIdle",
+"language": "GDScript",
+"path": "res://Characters/CharStateIdle.gd"
+}, {
+"base": "Spatial",
+"class": "ClimbableObj",
+"language": "GDScript",
+"path": "res://Objects/Interactable/Climbable/ClimbableObj.gd"
+}, {
+"base": "AnimationPlayer",
+"class": "CutscenePlayer",
+"language": "GDScript",
+"path": "res://Objects/CutscenePlayer.gd"
+}, {
+"base": "Node",
+"class": "DmgObj",
+"language": "GDScript",
+"path": "res://Objects/DmgObj.gd"
+}, {
+"base": "Node",
+"class": "DriveableObj",
+"language": "GDScript",
+"path": "res://Objects/Driveable/DriveableObj.gd"
+}, {
+"base": "Area",
+"class": "GreatCylinder",
+"language": "GDScript",
+"path": "res://Objects/Collectable/GreatCylinder.gd"
+}, {
+"base": "Node",
+"class": "InputComponent",
+"language": "GDScript",
+"path": "res://Characters/InputComponent.gd"
+}, {
+"base": "Node",
+"class": "MinecartGame",
+"language": "GDScript",
+"path": "res://Levels/SubAreas/MinecartGame/MinecartGame.gd"
+}, {
+"base": "Path",
+"class": "MinecartTrack",
+"language": "GDScript",
+"path": "res://Objects/MinecartTrack.gd"
+}, {
+"base": "Area",
+"class": "MinecartTrackModifier",
+"language": "GDScript",
+"path": "res://Objects/MinecartTrackModifier.gd"
+}, {
+"base": "Node",
+"class": "PlayerData",
+"language": "GDScript",
+"path": "res://Managers/PlayerData.gd"
+}, {
+"base": "Spatial",
+"class": "SwitchFloor",
+"language": "GDScript",
+"path": "res://Objects/Interactable/Damageable/SwitchFloor.gd"
+}, {
+"base": "Spatial",
+"class": "TeleDest1",
+"language": "GDScript",
+"path": "res://Objects/Teleport/TeleDest1.gd"
+}, {
+"base": "Area",
+"class": "WaterObj",
+"language": "GDScript",
+"path": "res://Objects/Interactable/Water/WaterObj.gd"
+} ]
+_global_script_class_icons={
+"Char": "",
+"CharOld": "",
+"CharState": "",
+"CharStateIdle": "",
+"ClimbableObj": "",
+"CutscenePlayer": "",
+"DmgObj": "",
+"DriveableObj": "",
+"GreatCylinder": "",
+"InputComponent": "",
+"MinecartGame": "",
+"MinecartTrack": "",
+"MinecartTrackModifier": "",
+"PlayerData": "",
+"SwitchFloor": "",
+"TeleDest1": "",
+"WaterObj": ""
+}
+
+[application]
+
+config/name="Platformer Thing"
+run/main_scene="res://Levels/Overworld/MainArea/MainArea.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+GameManager="*res://Managers/GameManager.gd"
+GameEvents="*res://Managers/GameEvents.gd"
+
+[input]
+
+Forward={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Back={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Sprint={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Attack={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+Interact={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Crouch={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Dive={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Backflip={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+"Long Jump"={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+"Ground Pound"={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+3d_render/layer_1="Environment"
+3d_render/layer_2="Player"
+3d_physics/layer_1="Environment"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Water"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
