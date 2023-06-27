@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Objects/MinecartTrack.gd" type="Script" id=1]
 [ext_resource path="res://Objects/MinecartTrack.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Levels/Overworld/MainArea/MinecartCutscene.gd" type="Script" id=3]
+[ext_resource path="res://Objects/CutscenePlayer.gd" type="Script" id=3]
 [ext_resource path="res://Objects/Interactable/Climbable/Tree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/Teleport/Teleporter1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/Interactable/Water/WaterBasic.tscn" type="PackedScene" id=6]
@@ -10,6 +10,9 @@
 [ext_resource path="res://Objects/Interactable/Damageable/SwitchFloor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/Driveable/Minecart/MinecartCutscene.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/Teleport/TeleDest1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Levels/Overworld/MainArea/MinecartEnterAnimation.tres" type="Animation" id=11]
+[ext_resource path="res://Levels/Overworld/MainArea/MinecartCutsceneTrigger.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/LookAt.gd" type="Script" id=13]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -19,6 +22,33 @@
 _data = {
 "points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.190418, 0.168136, 0.210645, -10.0665, -0.0893414, 0.409022, 10.0665, 0.0893414, -0.409022, 25.2032, 0.20525, 0.114509 ),
 "tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MinecartTrack/PathFollow:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3.3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:animCamPos")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ NodePath("CamPos") ]
 }
 
 [node name="MainArea" type="Spatial"]
@@ -66,12 +96,13 @@ updateWholeTrack = true
 skipFirst = true
 
 [node name="PathFollow" type="PathFollow" parent="MinecartTrack"]
-transform = Transform( 0.0131464, 0.00194491, 0.999903, 1.66628e-05, 0.999998, -0.00194528, -0.999914, 4.22349e-05, 0.0131462, 3.10654, 0.159819, 0.263449 )
+transform = Transform( 0.0131464, 0.00194491, 0.999532, 1.66628e-05, 0.999998, -0.00194456, -0.999914, 4.22349e-05, 0.0131413, 3.10654, 0.159819, 0.263449 )
 offset = 3.3
 rotation_mode = 4
 loop = false
 
 [node name="MinecartCutscene" parent="MinecartTrack/PathFollow" instance=ExtResource( 9 )]
+script = ExtResource( 12 )
 
 [node name="TrackPathFollow" type="PathFollow" parent="MinecartTrack"]
 transform = Transform( 0.016432, 0.00260597, 0.999862, 9.07833e-06, 0.999997, -0.00260647, -0.999865, 5.19065e-05, 0.0164319, 1.00998, 0.164632, 0.232235 )
@@ -107,14 +138,14 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="MinecartTrack/TrackPathFollow5" instance=ExtResource( 2 )]
 
 [node name="TrackPathFollow6" type="PathFollow" parent="MinecartTrack"]
-transform = Transform( 0.00767675, 0.000844257, 0.999969, 2.44459e-05, 1, -0.000844468, -0.999971, 3.0928e-05, 0.00767671, 7.0105, 0.154264, 0.304635 )
+transform = Transform( 0.00767675, 0.000844257, 0.99997, 2.44459e-05, 1, -0.000844468, -0.999971, 3.0928e-05, 0.00767672, 7.0105, 0.154264, 0.304635 )
 offset = 7.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="MinecartTrack/TrackPathFollow6" instance=ExtResource( 2 )]
 
 [node name="TrackPathFollow7" type="PathFollow" parent="MinecartTrack"]
-transform = Transform( 0.00594714, 0.000496284, 0.999981, 2.56563e-05, 1, -0.000496444, -0.999982, 2.86082e-05, 0.00594712, 8.20963, 0.153424, 0.312981 )
+transform = Transform( 0.00594714, 0.000496284, 0.999982, 2.56563e-05, 1, -0.000496445, -0.999982, 2.86082e-05, 0.00594712, 8.20963, 0.153424, 0.312981 )
 offset = 8.4
 rotation_mode = 4
 
@@ -142,7 +173,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="MinecartTrack/TrackPathFollow10" instance=ExtResource( 2 )]
 
 [node name="TrackPathFollow11" type="PathFollow" parent="MinecartTrack"]
-transform = Transform( -0.0018554, -0.00107313, 0.999998, 2.36639e-05, 0.999998, 0.00107318, -0.999998, 2.5655e-05, -0.00185538, 13.0204, 0.154518, 0.32428 )
+transform = Transform( -0.0018554, -0.00107314, 0.999998, 2.36639e-05, 0.999999, 0.00107318, -0.999998, 2.5655e-05, -0.00185538, 13.0204, 0.154518, 0.32428 )
 offset = 13.2
 rotation_mode = 4
 
@@ -170,7 +201,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="MinecartTrack/TrackPathFollow14" instance=ExtResource( 2 )]
 
 [node name="TrackPathFollow15" type="PathFollow" parent="MinecartTrack"]
-transform = Transform( -0.0120991, -0.00313389, 0.999921, 2.55795e-06, 0.999995, 0.00313415, -0.999927, 4.04783e-05, -0.0120991, 17.7888, 0.164067, 0.293403 )
+transform = Transform( -0.0120991, -0.00313389, 0.999922, 2.55795e-06, 0.999995, 0.00313415, -0.999927, 4.04783e-05, -0.0120991, 17.7888, 0.164067, 0.293403 )
 offset = 18.0
 rotation_mode = 4
 
@@ -184,7 +215,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="MinecartTrack/TrackPathFollow16" instance=ExtResource( 2 )]
 
 [node name="TrackPathFollow17" type="PathFollow" parent="MinecartTrack"]
-transform = Transform( -0.0189183, -0.00450579, 0.99981, -2.31037e-05, 0.99999, 0.00450616, -0.999821, 6.21495e-05, -0.0189182, 20.1728, 0.172979, 0.257404 )
+transform = Transform( -0.0189183, -0.00450579, 0.99981, -2.31037e-05, 0.99999, 0.00450615, -0.999821, 6.21495e-05, -0.0189182, 20.1728, 0.172979, 0.257404 )
 offset = 20.4
 rotation_mode = 4
 
@@ -198,7 +229,7 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="MinecartTrack/TrackPathFollow18" instance=ExtResource( 2 )]
 
 [node name="TrackPathFollow19" type="PathFollow" parent="MinecartTrack"]
-transform = Transform( -0.0277724, -0.006287, 0.999593, -7.02392e-05, 0.99998, 0.00628747, -0.999614, 0.000104407, -0.0277722, 22.5793, 0.185692, 0.202586 )
+transform = Transform( -0.0277724, -0.006287, 0.999594, -7.02392e-05, 0.99998, 0.00628747, -0.999614, 0.000104407, -0.0277722, 22.5793, 0.185692, 0.202586 )
 offset = 22.8
 rotation_mode = 4
 
@@ -212,14 +243,25 @@ rotation_mode = 4
 [node name="MinecartTrack" parent="MinecartTrack/TrackPathFollow20" instance=ExtResource( 2 )]
 
 [node name="TrackPathFollow21" type="PathFollow" parent="MinecartTrack"]
-transform = Transform( -0.0398449, -0.00871566, 0.999168, -0.000159626, 0.999962, 0.00871623, -0.999206, 0.000187805, -0.0398448, 24.9793, 0.203293, 0.123456 )
+transform = Transform( -0.0398449, -0.00871566, 0.999168, -0.000159626, 0.999962, 0.00871623, -0.999205, 0.000187805, -0.0398448, 24.9793, 0.203293, 0.123456 )
 offset = 25.2
 rotation_mode = 4
 
 [node name="MinecartTrack" parent="MinecartTrack/TrackPathFollow21" instance=ExtResource( 2 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/MinecartEnterAnimation = ExtResource( 11 )
+anims/RESET = SubResource( 4 )
 script = ExtResource( 3 )
+animClipFinish = "MinecartEnterAnimation"
+
+[node name="CamPos" type="Spatial" parent="AnimationPlayer"]
+transform = Transform( 0.967498, -0.0973748, 0.233378, 0, 0.922889, 0.385066, -0.252878, -0.372551, 0.892893, 26.8792, 5.7527, 10.8971 )
+script = ExtResource( 13 )
+target = NodePath("../../MinecartTrack/PathFollow/MinecartCutscene")
 
 [connection signal="OnPressed" from="SwitchFloor" to="Door1" method="Open"]
 [connection signal="curve_changed" from="MinecartTrack" to="MinecartTrack" method="_on_Path_curve_changed"]
+[connection signal="body_entered" from="MinecartTrack/PathFollow/MinecartCutscene" to="MinecartTrack/PathFollow/MinecartCutscene" method="_on_Area_body_entered"]
+[connection signal="startCutscene" from="MinecartTrack/PathFollow/MinecartCutscene" to="AnimationPlayer" method="StartCutscene"]
+[connection signal="animation_finished" from="AnimationPlayer" to="MinecartTrack/PathFollow/MinecartCutscene" method="_on_AnimationPlayer_animation_finished"]

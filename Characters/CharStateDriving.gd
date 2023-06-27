@@ -11,6 +11,7 @@ func _init(otherObj : DriveableObj) -> void:
 
 func enter(player: Char):
 	initRotation = player.rotation
+	driveObj.connect("ejecting_driver", self, "_on_ejected", [player])
 
 func processInput(player: Char, input: InputComponent) -> CharState:
 	var info = driveObj.processInput(input)
@@ -18,9 +19,16 @@ func processInput(player: Char, input: InputComponent) -> CharState:
 		player.translate(info.positionOffset)
 		player.rotation = initRotation
 		player.velocity = Vector3.ZERO
+		driveObj.disconnect("ejecting_driver", self, "_on_ejected")
 		return load("res://Characters/CharStateMoving.gd").new()
 	
 	return null
+
+func _on_ejected(info, player):
+	player.translate(info.positionOffset)
+	player.rotation = initRotation
+	player.velocity = Vector3.ZERO
+	player.ChangeState(load("res://Characters/CharStateMoving.gd").new())
 
 func physicsUpdate(player: Char, delta: float):
 	player.transform.origin = driveObj.global_transform.origin

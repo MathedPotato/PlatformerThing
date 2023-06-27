@@ -15,6 +15,7 @@ export var camMaxDist : float
 export var speedCamModifier : float
 export var selfDriving : bool
 
+
 func StartDriving(newDriver):
 	driver = newDriver
 	camTrackFollow.get_child(0).current = true
@@ -26,9 +27,12 @@ func processInput(input : InputComponent):
 	if input.is_action_pressed("Back"):
 		inputSpeed -= 1
 	if input.is_action_pressed("Crouch"):
-		driver = null
-		camTrackFollow.get_child(0).current = false
-		return ExitVehicleInfo.new(Vector3(0,0,-5))
+		return EjectDriver()
+
+func EjectDriver():
+	driver = null
+	camTrackFollow.get_child(0).current = false
+	return ExitVehicleInfo.new(Vector3(0,0,-5))
 
 func _physics_process(delta: float) -> void:
 	if !selfDriving and !driver: return

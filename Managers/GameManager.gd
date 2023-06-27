@@ -13,6 +13,8 @@ var teleDests = {}
 var cutsceneCo
 var playerData : PlayerData
 
+signal loading_level
+
 
 func _ready() -> void:
 	playerData = PlayerData.new()
@@ -54,6 +56,7 @@ func changeCamMode(newMode):
 	camMode = newMode
 
 func loadLevel(levelPath, destId = 0):
+	emit_signal("loading_level")
 	teleDests.clear()
 	if $CurrentLevel.get_child_count() != 0:
 		for childNode in $CurrentLevel.get_children():

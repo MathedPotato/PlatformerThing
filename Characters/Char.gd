@@ -45,11 +45,14 @@ func _physics_process(delta: float) -> void:
 	if currentState.has_method("processInput"):
 		var newState = currentState.processInput(self, inputController)
 		if newState != null:
-			if currentState.has_method("exit"): currentState.exit(self)
-			currentState = newState
-			if currentState.has_method("enter"): currentState.enter(self)
+			ChangeState(newState)
 	if currentState.has_method("physicsUpdate"):
 		currentState.physicsUpdate(self, delta)
+
+func ChangeState(newState):
+	if currentState.has_method("exit"): currentState.exit(self)
+	currentState = newState
+	if currentState.has_method("enter"): currentState.enter(self)
 
 func _process(delta: float) -> void:
 	if currentState.has_method("update"):
@@ -99,4 +102,4 @@ func CollectGreatCylinder(cylinder : GreatCylinder):
 	pass
 
 func StartDriving(driveObj : DriveableObj):
-	currentState = load("res://Characters/CharStateDriving.gd").new(driveObj)
+	ChangeState(load("res://Characters/CharStateDriving.gd").new(driveObj))
