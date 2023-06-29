@@ -3,6 +3,7 @@ extends Node
 export var autoloadLevel = false
 
 var charPrefab = preload("res://Characters/Char.tscn")
+var UiPrefab = preload("res://UI/MainUI.tscn")
 
 var currCam : Camera
 export var mouseSensitivity = 0.3
@@ -27,10 +28,14 @@ func _ready() -> void:
 	var charNode = Node.new()
 	charNode.name = "CurrentChar"
 	$".".add_child(charNode)
+	var uiNode = Node.new()
+	uiNode.name = "CurrentUI"
+	$".".add_child(uiNode)
 	currCam = $Camera
 	if autoloadLevel:
 		loadLevel("res://Levels/Overworld/MainArea/MainArea.tscn")
 	spawnChar()
+	spawnUI()
 
 func _process(delta: float) -> void:
 	if camMode == CamModes.player:
@@ -51,6 +56,14 @@ func spawnChar():
 			childNode.queue_free()
 	$CurrentChar.add_child(currChar)
 	changeCamMode(CamModes.player)
+
+func spawnUI():
+	var uiNode = UiPrefab.instance()
+	
+	if $CurrentUI.get_child_count() != 0:
+		for childNode in $CurrentUI.get_children():
+			childNode.queue_free()
+	$CurrentUI.add_child(uiNode)
 
 func changeCamMode(newMode):
 	camMode = newMode

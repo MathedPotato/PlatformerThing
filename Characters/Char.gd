@@ -99,7 +99,9 @@ func CollectGreatCylinder(cylinder : GreatCylinder):
 	# Invoke state's implementation of method (if it exists)
 	if currentState.has_method("CollectGreatCylinder"):
 		currentState.CollectGreatCylinder(cylinder)
-	pass
+	
+	# Notify the GameEvents singleton
+	GameEvents.GetGreatCylinder(cylinder, GameManager.playerData.greatCylinders.size())
 
 func StartDriving(driveObj : DriveableObj):
 	ChangeState(load("res://Characters/CharStateDriving.gd").new(driveObj))
