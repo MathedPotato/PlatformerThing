@@ -102,6 +102,8 @@ func CollectGreatCylinder(cylinder : GreatCylinder):
 	
 	# Notify the GameEvents singleton
 	GameEvents.GetGreatCylinder(cylinder, GameManager.playerData.greatCylinders.size())
+	
+	cylinder.visible = false
 
 func StartDriving(driveObj : DriveableObj):
 	ChangeState(load("res://Characters/CharStateDriving.gd").new(driveObj))
