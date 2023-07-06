@@ -1,0 +1,31 @@
+The code for some of the player controls are modified versions of the Player.gd script provided in this tutorial: https://docs.godotengine.org/en/3.2/tutorials/3d/fps_tutorial/part_one.html
+This script is released under the MIT license, was originally created by TwistedTwigleg, and belongs to the Godot community.
+
+The following scripts use this code at the indicated line numbers (there may be other segments that also derive from the above script that I have since forgotten about):
+
+Char.gd
+66 - 68
+
+CharOld.gd
+35 - 76, 82 - 96
+
+CharStateBackflip.gd
+40 - 54
+
+CharStateClimbing.gd
+23 - 39
+
+CharStateDiving.gd
+20 - 60
+
+CharStateFalling.gd
+30 - 71
+
+CharStateJumping.gd
+25 - 45
+
+CharStateMoving.gd
+14 - 31, 51 - 71
+
+CharStateSwimming.gd
+26 - 71
