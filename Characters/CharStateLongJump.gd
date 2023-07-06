@@ -38,18 +38,6 @@ func BackflipCoroutine(player: Char):
 	player.velocity = player.velocity.normalized() * initJumpVel.z
 	player.velocity.y = initJumpVel.y
 	while true:
-#		var hVel = player.velocity
-#		hVel.y = 0
-#
-#		var accel
-#		if player.moveDir.dot(hVel) > 0:
-#			accel = player.hAccel
-#		else:
-#			accel = player.hDeaccel
-#
-#		hVel = hVel.linear_interpolate(Vector3.ZERO, delta * accel)
-#		player.velocity.x = hVel.x
-#		player.velocity.z = hVel.z
 		player.velocity.y += gravity * delta
 		player.velocity += constVel
 		player.velocity = player.move_and_slide(player.velocity, Vector3(0,1,0), false, 4, deg2rad(player.maxSlope), false)
